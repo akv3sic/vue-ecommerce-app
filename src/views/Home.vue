@@ -1,6 +1,5 @@
 <template>
-    <Hero />
-
+   <Hero />
 </template>
 
 <script>
