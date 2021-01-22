@@ -3,9 +3,9 @@
             <div>
                 <v-tabs v-model="tab" show-arrows background-color="" icons-with-text grow>
                     <v-tabs-slider></v-tabs-slider>
-                    <v-tab v-for="i in tabs" :key="i">
-                         <h4 class="pr-2 caption">{{ i.name }}</h4>
-                        <v-icon large>{{ i.icon }}</v-icon>
+                    <v-tab v-for="(tab, i) in tabs" :key="i">
+                         <h4 class="pr-2 caption">{{ tab.name }}</h4>
+                        <v-icon large>{{ tab.icon }}</v-icon>
                        
                     </v-tab>
                     <v-tab-item>
@@ -14,16 +14,16 @@
                                 <v-form ref="loginForm" v-model="valid" lazy-validation>
                                     <v-row>
                                         <v-col cols="12">
-                                            <v-text-field v-model="loginUserName" :rules="loginUserNameRules" label="Korisničko ime" required></v-text-field>
+                                            <v-text-field v-model="loginEmail" :rules="loginEmailRules" label="E-mail" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field v-model="loginPassword" :append-icon="show1?'eye':'eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Lozinka" hint="Minimalno 8 znakova." counter @click:append="show1 = !show1"></v-text-field>
+                                            <v-text-field v-model="loginPassword" :append-icon="showLoginPassword?'mdi-eye':'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="showLoginPassword ? 'text' : 'password'" name="input-10-1" label="Lozinka" hint="Minimalno 8 znakova." counter @click:append="showLoginPassword = !showLoginPassword"></v-text-field>
                                         </v-col>
                                         <v-col class="d-flex" cols="12" sm="6" xsm="12">
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-                                            <v-btn x-large block :disabled="!valid" color="primary" @click="validate">Prijava</v-btn>
+                                            <v-btn x-large block :disabled="!valid" color="primary" @click="validateAndLogIn">Prijava</v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -42,20 +42,20 @@
                                             <v-text-field v-model="prezime" :rules="[rules.required]" label="Prezime" maxlength="20" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field v-model="userName" :rules="userNameRules" label="Korisničko ime" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12">
                                             <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Lozinka" hint="Minimalno 8 znakova." counter @click:append="show1 = !show1"></v-text-field>
+                                            <v-text-field v-model="phoneNum" label="Broj mobitela"></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
-                                            <v-text-field block v-model="verify" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, passwordMatch]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Potvrdite lozinku" counter @click:append="show1 = !show1"></v-text-field>
+                                            <v-text-field v-model="password" :append-icon="showRegPassword1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="showRegPassword1 ? 'text' : 'password'" name="input-10-1" label="Lozinka" hint="Minimalno 8 znakova." counter @click:append="showRegPassword1 = !showRegPassword1"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <v-text-field block v-model="verify" :append-icon="showRegPassword2 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, passwordMatch]" :type="showRegPassword2 ? 'text' : 'password'" name="input-10-1" label="Potvrdite lozinku" counter @click:append="showRegPassword2 = !showRegPassword2"></v-text-field>
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12">
-                                            <v-btn x-large block :disabled="!valid" color="primary" @click="validate">Izradi</v-btn>
+                                            <v-btn x-large block :disabled="!valid" color="primary" @click="validateAndRegister">Izradi</v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
@@ -68,6 +68,8 @@
 </template>
 
 <script>
+
+
 export default {
     name: "Login",
     computed: {
@@ -76,9 +78,44 @@ export default {
     }
   },
   methods: {
-    validate() {
+     
+    // metoda za validaciju i login
+    validateAndLogIn() {
       if (this.$refs.loginForm.validate()) {
-        // submit form to server/API here...
+        // 
+        console.log("Korisnik prijavljen")
+        const USER = {
+            email: this.loginEmail,
+            lozinka: this.loginPassword
+        }
+        console.log(USER)
+        this.$store
+            .dispatch('auth/logIn', USER, { root: true })
+            .then(() => this.$router.push({ name: "Home" }))
+            .catch( err => {
+                console.log(err)
+            })
+      }
+    },
+    // metoda za validaciju i registraciju
+     validateAndRegister() {
+      if (this.$refs.registerForm.validate()) {
+        // 
+        console.log("Korisnik registriran")
+        const USER = {
+            email: this.email,
+            lozinka: this.password,
+            ime: this.ime,
+            prezime: this.prezime,
+            mobitel: this.phoneNum
+        }
+        console.log(USER)
+        this.$store
+            .dispatch('auth/register', USER, { root: true })
+            .then(() => this.$router.push({ name: "Home" }))
+            .catch( err => {
+                console.log("Greska pri registraciji: " + err)
+            })
       }
     },
     reset() {
@@ -100,6 +137,7 @@ export default {
     ime: "",
     prezime: "",
     email: "",
+    phoneNum: null,
     password: "",
     verify: "",
     loginPassword: "",
@@ -113,7 +151,9 @@ export default {
       v => /.+@.+\..+/.test(v) || "Unesite ispravnu e-mail adresu."
     ],
 
-    show1: false,
+    showLoginPassword: false,
+    showRegPassword1:false,
+    showRegPassword2: false,
     rules: {
       required: value => !!value || "Obavezno polje.",
       min: v => (v && v.length >= 8) || "Minimalno 8 znakova."

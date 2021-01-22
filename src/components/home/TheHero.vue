@@ -2,13 +2,11 @@
   <v-carousel
       cycle
       interval="5000"
-      hide-controls
       :show-arrows="false"
       hide-delimiter-background
       delimiter-icon="mdi-minus"
       style=""
       height="100vh"
-      v-model="carrouselIndex"
       >
       <v-carousel-item
         eager
