@@ -21,7 +21,7 @@
         <div class="mainPitch">
           <div class="hero-text">
                 <h3>mi smo spremni.</h3>
-                <button class="btn btn-rezerviraj">Rezervirajte termin.</button>
+                <router-link to="/rezervacija"><button class="btn btn-rezerviraj">Rezervirajte termin.</button></router-link>
             </div>
         </div>
         
@@ -39,7 +39,7 @@
         <div class="mainPitch">
           <div class="hero-text">
                 <h3>samo najbolje <br> za Vas.</h3>
-                <button class="btn btn-rezerviraj">Istražite trgovinu.</button>
+                <router-link to="/trgovina"><button class="btn btn-rezerviraj">Istražite trgovinu.</button></router-link>
             </div>
         </div>
       </v-carousel-item>
