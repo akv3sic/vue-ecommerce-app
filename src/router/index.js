@@ -13,6 +13,12 @@ const routes = [
     path: '/prijava',
     name: 'login',
     component: () => import("@/views/auth/Login")
+  },
+  // 404 redirect
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: () => import("@/views/NotFound")
   }
 ]
 
