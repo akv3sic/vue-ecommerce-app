@@ -1,4 +1,6 @@
-# dashdetailing-frontend
+# DashDetailing - frontend
+- [Vizija](https://docs.google.com/document/d/1JzsLHWfdC9LEyuukmeVUxToQmCsCsy9Hc-fkxp9aitw/edit?usp=sharing)
+- [Backend repo](https://github.com/VjekoRezic/FlaskBackend)
 
 ## Project setup
 ```
