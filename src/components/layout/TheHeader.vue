@@ -25,7 +25,7 @@
                 </span>
                  <!-- Standard menu -->
                 <v-toolbar-items class="hidden-xs-only">
-                    <v-btn to="/" text>
+                    <v-btn to="/" text> 
                         naslovna
                     </v-btn>
                       <v-btn to="trgovina" text>

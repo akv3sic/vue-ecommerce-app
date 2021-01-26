@@ -24,7 +24,7 @@ const actions = {
                 // check response status
                 if(response.status === 200) { // OK
                 // assign response data
-                const token = response.data.token
+                const token = response.data.access_token
                 const user = response.data.user
                 // save token to local storage
                 localStorage.setItem('token', token)

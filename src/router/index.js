@@ -14,6 +14,12 @@ const routes = [
     name: 'login',
     component: () => import("@/views/auth/Login")
   },
+  {
+    path: '/trgovina',
+    name: 'shopHome',
+    component: () => import("@/views/shop/ShopHome")
+  },
+
   // 404 redirect
   {
     path: '/:catchAll(.*)',
