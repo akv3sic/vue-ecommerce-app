@@ -4,7 +4,8 @@
             <v-col
             v-for="card in cards"
             :key="card.title"
-            :cols="card.flex"
+            cols="12"
+            :md="card.flex"
             >
             <v-card>
                 <v-img

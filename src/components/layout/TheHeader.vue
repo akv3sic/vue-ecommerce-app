@@ -6,10 +6,10 @@
             >
                 <v-spacer class="hidden-xs-only"></v-spacer>
                  <img class="mr-3" :src="require('../../assets/logo.svg')" height="30"/>
-                <v-toolbar-title class="text-uppercase grey--text">
-                        <router-link to="/" class="text-decoration-none grey--text">
+                <v-toolbar-title class="text-uppercase">
+                        <router-link to="/" class="text-decoration-none primary--text">
                             <span class="font-weight-light">Dash</span>
-                            <span>Detailing</span>
+                            <span class="">Detailing</span>
                         </router-link>
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
