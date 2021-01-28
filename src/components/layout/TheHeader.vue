@@ -2,9 +2,10 @@
         <div class="header">
             <v-app-bar app 
                 color="white"
+                height="80"
                 flat
             >
-                <v-spacer class="hidden-xs-only"></v-spacer>
+                <v-spacer class="hidden-md-and-up"></v-spacer>
                  <img class="mr-3" :src="require('../../assets/logo.svg')" height="30"/>
                 <v-toolbar-title class="text-uppercase">
                         <router-link to="/" class="text-decoration-none primary--text">
@@ -15,7 +16,7 @@
                 <v-spacer></v-spacer>
 
                 <!-- Mobile menu icon -->
-                <span class="hidden-sm-and-up">
+                <span class="hidden-md-and-up">
                     <v-btn 
                         @click.stop="drawer = !drawer"
                         text
@@ -24,18 +25,29 @@
                     </v-btn>
                 </span>
                  <!-- Standard menu -->
-                <v-toolbar-items class="hidden-xs-only">
+                <v-toolbar-items class="hidden-sm-and-down">
                     <v-btn to="/" text> 
                         naslovna
                     </v-btn>
                       <v-btn to="trgovina" text>
                         trgovina
                     </v-btn>
-                      <v-btn to="prijava" text>
-                        prijava
+                    <v-btn text>
+                        projekt
                     </v-btn>
                 </v-toolbar-items>
-                <v-spacer class="hidden-xs-only"></v-spacer>
+                <v-spacer class="hidden-sm-and-down"></v-spacer>
+                <!-- Auth butttons -->
+                <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn v-if="isLoggedIn" to="mojracun" class="remove-text-transform" text>
+                        <v-icon>mdi-account</v-icon>
+                        Moj račun
+                    </v-btn>
+                    <v-btn v-else to="prijava" class="remove-text-transform" text>
+                        <v-icon>mdi-login</v-icon>
+                        Prijava
+                    </v-btn>
+                </v-toolbar-items>
             </v-app-bar>
 
             <!-- Mobile menu -->
@@ -58,19 +70,32 @@
                           <v-icon>mdi-home</v-icon>
                       </v-list-item-icon>
                       <v-list-item-title>Naslovna</v-list-item-title>
-                  </v-list-item>
-                     <v-list-item to="trgovina">
+                    </v-list-item>
+                    <v-list-item to="trgovina">
                       <v-list-item-icon>
                           <v-icon>mdi-cart</v-icon>
                       </v-list-item-icon>
                       <v-list-item-title>Trgovina</v-list-item-title>
-                  </v-list-item>
-                     <v-list-item to="prijava">
+                    </v-list-item>
+                      <v-list-item>
+                      <v-list-item-icon>
+                          <v-icon>mdi-information-variant</v-icon>
+                      </v-list-item-icon>
+                      <v-list-item-title>Projekt</v-list-item-title>
+                    </v-list-item>
+                  <!-- Auth butttons -->
+                    <v-list-item v-if="isLoggedIn" to="mojracun">
+                      <v-list-item-icon>
+                          <v-icon>mdi-account</v-icon>
+                      </v-list-item-icon>
+                      <v-list-item-title>Moj račun</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item v-else to="prijava">
                       <v-list-item-icon>
                           <v-icon>mdi-login</v-icon>
                       </v-list-item-icon>
                       <v-list-item-title>Prijava</v-list-item-title>
-                  </v-list-item>
+                    </v-list-item>
                 </v-list-item-group>
             </v-list>
             </v-navigation-drawer>
@@ -82,12 +107,15 @@ export default {
     name: "Header",
     data() {
         return {
-            drawer: null
+            drawer: null,
+            isLoggedIn: false
         }
     }
 }
 </script>
 
 <style scoped>
-
+.remove-text-transform {
+    text-transform: none !important;
+}
 </style>
