@@ -5,6 +5,7 @@
                 <ProductsFilterBar />
             </v-col>
             <v-col>
+                <!-- Odabir kategorije i filtera ZA XS I SM -->
                 <div class="hidden-md-and-up">
                     <v-select label="Odaberite kategoriju" class="hidden-md-and-up"></v-select>
                 </div>
@@ -16,6 +17,12 @@
                      <v-spacer></v-spacer>
                  </v-btn>
                 </v-container>
+                <!-- XS I SM kraj -->
+
+                <!-- Lista proizvoda -->
+                <ProductGrid />
+
+               
             </v-col>
         </v-row>
     </v-container>
@@ -23,10 +30,11 @@
 
 <script>
 import ProductsFilterBar from "@/components/shop/productsPage/TheProductsFilterBar"
+import ProductGrid from "@/components/shop/productsPage/ProductGrid"
 
 export default {
     name: "Page",
-    components: {ProductsFilterBar},
+    components: { ProductsFilterBar, ProductGrid },
     data: () => ({
 
     }),
