@@ -1,7 +1,7 @@
 <template>
     <v-row align="center" class="my-auto">
         <v-col class="my-auto"> 
-            <v-card class="mx-auto my-15" max-width="600px" min-width="250px" elevation="6">
+            <v-card class="mx-auto my-5" max-width="600px" min-width="250px" elevation="6">
                 <div>
                     <v-tabs v-model="tab" show-arrows background-color="" icons-with-text grow>
                         <v-tabs-slider></v-tabs-slider>
@@ -17,7 +17,7 @@
                                             <v-col cols="12">
                                                 <v-text-field v-model="loginEmail" :rules="loginEmailRules" label="E-mail" required></v-text-field>
                                             </v-col>
-                                            <v-col cols="12">
+                                            <v-col cols="12" class="mb-2">
                                                 <v-text-field v-model="loginPassword" :append-icon="showLoginPassword?'mdi-eye':'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="showLoginPassword ? 'text' : 'password'" name="input-10-1" label="Lozinka" hint="Minimalno 8 znakova." counter @click:append="showLoginPassword = !showLoginPassword"></v-text-field>
                                             </v-col>
                                             <v-col class="d-flex" cols="12" sm="6" xsm="12">

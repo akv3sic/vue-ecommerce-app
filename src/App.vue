@@ -1,7 +1,7 @@
 <template>
     <v-app class="">
      <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-       <Header />
+       <Header v-show="$route.path !== '/prijava'"/>
 
         <!-- Sizes your content based upon application components -->
       <v-main :class="{'pa-0':$route.path == '/'}">
