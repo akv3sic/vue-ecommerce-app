@@ -1,7 +1,7 @@
 <template>
     <v-form>
         <v-row justify="center">
-            <v-col cols="6">
+            <v-col cols="10" sm="8" md="6" xl="4">
                 <v-autocomplete
                     v-model="model"
                     :loading="isLoading"
