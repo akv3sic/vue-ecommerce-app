@@ -24,15 +24,15 @@ const actions = {
                 // check response status
                 if(response.status === 200) { // OK
                 // assign response data
-                const token = response.data.access_token
-                const user = response.data.user
-                // save token to local storage
-                localStorage.setItem('token', token)
-                // set header
-                httpClient.defaults.headers.common['Authorization'] = token
-                // call mutation
-                commit('auth_success', token, user)
-                resolve(response)
+                    const token = response.data.access_token
+                    const user = response.data.user
+                    // save token to local storage
+                    localStorage.setItem('token', token)
+                    // set header
+                    httpClient.defaults.headers.common['Authorization'] = token
+                    // call mutation
+                    commit('auth_success', token, user)
+                    resolve(response)
                 }
             })
             .catch(err => {
@@ -48,9 +48,19 @@ const actions = {
             httpClient.post("/registracija", user)
             .then(response => {
                 console.log(response.data)
-                
-                // NEDOSTAJE! DOVRŠITI
-                resolve(response)
+                // check response status
+                if(response.status === 201) { // resource created 
+                    // assign response data
+                    const token = response.data.access_token
+                    const user = response.data.user
+                    // save token to local storage
+                    localStorage.setItem('token', token)
+                    // set header
+                    httpClient.defaults.headers.common['Authorization'] = token
+                    // call mutation
+                    commit('auth_success', token, user)
+                    resolve(response)
+                }
             })
             .catch(err => {
                 commit('auth_error', err)
@@ -66,7 +76,7 @@ const actions = {
             .then(response => {
                 console.log(response.data)
                 
-                // NEDOSTAJE! DOVRŠITI
+                // TREBA LI JOŠ NEŠTO?
                 commit('logout')
                 localStorage.removeItem('token')
                 delete httpClient.defaults.headers.common['Authorization']
