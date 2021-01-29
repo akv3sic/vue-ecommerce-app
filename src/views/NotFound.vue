@@ -8,7 +8,7 @@
     </v-row>
     <v-row justify="space-around" align="center">
         <v-col cols="8" sm="5" md="4" lg="3">
-            <v-btn class="mt-4" block @click="$router.back()">Natrag.</v-btn>
+            <v-btn class="mt-4" color="primary" block @click="$router.back()">Natrag.</v-btn>
         </v-col>
     </v-row>
 </v-container>
