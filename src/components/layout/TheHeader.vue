@@ -5,8 +5,15 @@
                 height="80"
                 flat
             >
+                <!-- Mobile shopping basket button -->
+                <v-btn to="kosarica" class="hidden-md-and-up" text>
+                    <v-icon large left>mdi-basket-outline</v-icon>
+                    <v-badge color="accent" content="0"></v-badge>
+                </v-btn>
+
+                <!-- Logo area -->
                 <v-spacer class="hidden-md-and-up"></v-spacer>
-                 <img class="mr-3" :src="require('../../assets/logo.svg')" height="30"/>
+                 <img class="mr-1" :src="require('../../assets/logo.svg')" height="25"/>
                 <v-toolbar-title class="text-uppercase">
                         <router-link to="/" class="text-decoration-none primary--text">
                             <span class="font-weight-light">Dash</span>
@@ -37,8 +44,10 @@
                     </v-btn>
                 </v-toolbar-items>
                 <v-spacer class="hidden-sm-and-down"></v-spacer>
-                <!-- Auth butttons -->
+                
                 <v-toolbar-items class="hidden-sm-and-down">
+
+                <!-- Auth butttons -->    
                 <v-btn v-if="isLoggedIn" to="mojracun" class="remove-text-transform" text>
                         <v-icon>mdi-account</v-icon>
                         Moj račun
@@ -47,6 +56,13 @@
                         <v-icon>mdi-login</v-icon>
                         Prijava
                     </v-btn>
+
+                <!-- Shopping basket buttton -->    
+                <v-btn to="kosarica" class="" text>
+                    <v-icon>mdi-basket-outline</v-icon>
+                    <v-badge color="accent" content="0"></v-badge>
+                </v-btn>
+                    
                 </v-toolbar-items>
             </v-app-bar>
 
