@@ -36,7 +36,7 @@
                     <v-btn to="/" text> 
                         naslovna
                     </v-btn>
-                      <v-btn to="trgovina" text>
+                      <v-btn to="/trgovina" text>
                         trgovina
                     </v-btn>
                     <v-btn text>
@@ -48,17 +48,17 @@
                 <v-toolbar-items class="hidden-sm-and-down">
 
                 <!-- Auth butttons -->    
-                <v-btn v-if="isLoggedIn" to="mojracun" class="remove-text-transform" text>
+                <v-btn v-if="isLoggedIn" to="/mojracun" class="remove-text-transform" text>
                         <v-icon>mdi-account</v-icon>
                         Moj račun
                     </v-btn>
-                    <v-btn v-else to="prijava" class="remove-text-transform" text>
+                    <v-btn v-else to="/prijava" class="remove-text-transform" text>
                         <v-icon>mdi-login</v-icon>
                         Prijava
                     </v-btn>
 
                 <!-- Shopping basket buttton -->    
-                <v-btn to="kosarica" class="" text>
+                <v-btn to="/kosarica" class="" text>
                     <v-icon>mdi-basket-outline</v-icon>
                     <v-badge color="accent" content="0"></v-badge>
                 </v-btn>
@@ -87,7 +87,7 @@
                       </v-list-item-icon>
                       <v-list-item-title>Naslovna</v-list-item-title>
                     </v-list-item>
-                    <v-list-item to="trgovina">
+                    <v-list-item to="/trgovina">
                       <v-list-item-icon>
                           <v-icon>mdi-cart</v-icon>
                       </v-list-item-icon>
@@ -100,13 +100,13 @@
                       <v-list-item-title>Projekt</v-list-item-title>
                     </v-list-item>
                   <!-- Auth butttons -->
-                    <v-list-item v-if="isLoggedIn" to="mojracun">
+                    <v-list-item v-if="isLoggedIn" to="/mojracun">
                       <v-list-item-icon>
                           <v-icon>mdi-account</v-icon>
                       </v-list-item-icon>
                       <v-list-item-title>Moj račun</v-list-item-title>
                     </v-list-item>
-                    <v-list-item v-else to="prijava">
+                    <v-list-item v-else to="/prijava">
                       <v-list-item-icon>
                           <v-icon>mdi-login</v-icon>
                       </v-list-item-icon>

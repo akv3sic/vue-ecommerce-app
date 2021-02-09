@@ -19,7 +19,12 @@ const routes = [
     name: 'shopHome',
     component: () => import("@/views/shop/ShopHome")
   },
-
+  // pojedinačni proizvod
+  {
+    path: '/product/:slug',
+    name: 'product',
+    component: () => import("@/views/shop/Product")
+  },
   // 404 redirect
   {
     path: '/:catchAll(.*)',

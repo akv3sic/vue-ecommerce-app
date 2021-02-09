@@ -7,6 +7,7 @@
       <v-main :class="{'pa-0':$route.path == '/'}">
         <!-- Provides the application the proper gutter -->
         <v-container fluid :class="{'pa-0':$route.path == '/'}">
+        <!-- Ovdje se injektiraju pogledi -->
           <router-view></router-view>
        </v-container>
       </v-main>
