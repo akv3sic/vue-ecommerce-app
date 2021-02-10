@@ -22,7 +22,15 @@
                     Brandu
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                    <v-checkbox label="Sonax" value="sonax" dense></v-checkbox>
+                    <v-checkbox 
+                    v-for="(brand, id) in brandovi"
+                    :key="id"
+                    :value="brand.id"
+                    :label="brand.imeBranda"
+                    v-model="brandoviSelected"
+                    dense
+                     >
+                     </v-checkbox>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         
@@ -46,11 +54,20 @@
 export default {
     name: "ProductsFilterBar",
     data: () => ({
-        kategorije: [
-            {"id": "1", "imeKategorije" : "Kategorija 1"},
-            {"id": "2", "imeKategorije" : "Kategorija 2"},
-            {"id": "3", "imeKategorije" : "Kategorija 3"},
-        ],
+       brandoviSelected: [],
     }),
+    props: {
+        kategorije: { type: Array, required: true },
+        brandovi: { type: Array, required: true }
+    },
+    watch: {
+        brandoviSelected() {
+            console.log(this.brandoviSelected)
+            
+            this.brandoviSelected.forEach(brandSelected => {
+                console.log(brandSelected)
+            });
+        }
+    }
 }
 </script>
