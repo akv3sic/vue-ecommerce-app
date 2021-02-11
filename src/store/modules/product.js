@@ -14,9 +14,9 @@ const state = () => ({
  
  // actions
  const actions = {
-    fetchProduct( {commit}, productSlug) {
-        const url = '/proizvod/' + productSlug
-        console.log(url)
+    fetchProduct( {commit}, productId) {
+        const url = '/proizvodi/' + productId
+        console.log('Request to' + url)
         httpClient.get(url)
             .then((response) => {
                 console.log(response.data)

@@ -21,7 +21,7 @@ const routes = [
   },
   // pojedinačni proizvod
   {
-    path: '/product/:slug',
+    path: '/proizvod/:id/:slug',
     name: 'product',
     component: () => import("@/views/shop/Product"),
     props: true

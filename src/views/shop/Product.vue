@@ -9,7 +9,7 @@
           <!-- Slika koja se prikazuje samo na md-and-up -->
           <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down">
             <v-row>
-              <zoom-on-hover :img-normal="product.imgLink"></zoom-on-hover>
+              <zoom-on-hover :img-normal="product.url_slike"></zoom-on-hover>
             </v-row>
           </v-col>
            <!--  -->   
@@ -18,9 +18,9 @@
             <v-row>
               <v-col>
                 <span class="text-caption">{{ product.kategorija }}</span>
-                <h1 class="text-h4 font-weight-light primary--text">{{ product.name }}</h1>
+                <h1 class="text-h4 font-weight-light primary--text">{{ product.ime }}</h1>
                 <span class="text-subtitle-1">SKU: N/A</span><br>
-                <span class="text-h5 font-weight-bold">{{ product.price }} KM</span><br><br>
+                <span class="text-h5 font-weight-bold">{{ product.cijena }} KM</span><br><br>
                 <span class="text-button">Količina:</span>
                 <v-text-field value="1" type="number" :rules="quantityRules" outlined shaped></v-text-field>
                 <v-btn class="mt-2 mb-16" color="primary" >Dodaj u košaricu</v-btn>
@@ -34,7 +34,7 @@
             <!-- Slika koja se prikazuje samo na sm-and-down -->
             </v-row>
              <v-row class="hidden-md-and-up">
-              <zoom-on-hover :img-normal="product.imgLink"></zoom-on-hover>
+              <zoom-on-hover :img-normal="product.url_slike"></zoom-on-hover>
             </v-row>
             <!-- Opis proizvoda -->
             <v-row>
@@ -67,7 +67,7 @@ export default {
       }
     },
     beforeRouteEnter(to, from, next) {
-      store.dispatch('product/fetchProduct', to.params.slug, {root: true})
+      store.dispatch('product/fetchProduct', to.params.id, {root: true})
       next()
     },
     computed: {
@@ -84,7 +84,7 @@ export default {
             href: '/trgovina',
           },
           {
-            text: this.product.name,
+            text: this.product.ime,
             disabled: true,
             href: '',
           },
