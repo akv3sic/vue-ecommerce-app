@@ -23,7 +23,8 @@ const routes = [
   {
     path: '/product/:slug',
     name: 'product',
-    component: () => import("@/views/shop/Product")
+    component: () => import("@/views/shop/Product"),
+    props: true
   },
   // 404 redirect
   {

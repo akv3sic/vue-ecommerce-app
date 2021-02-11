@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import store from "@/store";
 import Vue from 'vue'
 import ZoomOnHover from "vue-zoom-on-hover";
 Vue.use(ZoomOnHover);
@@ -58,26 +60,44 @@ Vue.use(ZoomOnHover);
 
 export default {
     name: "productView",
+    props: {
+      slug: {
+        type: String,
+        required: true
+      }
+    },
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('product/fetchProduct', to.params.slug, {root: true})
+      next()
+    },
+    computed: {
+      breadCrumbs() {
+        const items = [
+          {
+            text: 'Naslovna',
+            disabled: false,
+            href: '/',
+          },
+          {
+            text: 'Trgovina',
+            disabled: false,
+            href: '/trgovina',
+          },
+          {
+            text: this.product.name,
+            disabled: true,
+            href: '',
+          },
+        ]
+        return items
+      },
+
+      ...mapGetters('product', ['product'])
+    },
     data: () => ({
-       product:  {'id':'1', 'slug':'sonax-pasta', 'name':"SONAX pasta za poliranje", 'brand':'Sonax', 'kategorija': 'Pribor i alati za poliranje', 'price': '55.90', 'imgLink': 'https://www.carbox.ba/wp-content/uploads/2019/02/296141-SONAX-Politura-sa-voskom-crna.jpg'},
-    // breadcrumb navigation items
-      breadCrumbs: [
-        {
-          text: 'Naslovna',
-          disabled: false,
-          href: '/',
-        },
-        {
-          text: 'Trgovina',
-          disabled: false,
-          href: '/trgovina',
-        },
-        {
-          text: "'$this.product.imgLink'",
-          disabled: true,
-          href: '',
-        },
-      ],
+      // mock
+      // product:  {'id':'1', 'slug':'sonax-pasta', 'name':"SONAX pasta za poliranje", 'brand':'Sonax', 'kategorija': 'Pribor i alati za poliranje', 'price': '55.90', 'imgLink': 'https://www.carbox.ba/wp-content/uploads/2019/02/296141-SONAX-Politura-sa-voskom-crna.jpg'},
+    
       quantityRules: [
         
       ],
