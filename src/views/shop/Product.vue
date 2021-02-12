@@ -41,8 +41,7 @@
               <v-col order="-1">
                 <hr>
                 <h2 class="text-overline">Opis proizvoda</h2>
-                <p class="text-body-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum amet animi libero rerum deleniti eaque omnis magnam molestiae incidunt praesentium maxime laboriosam, reprehenderit magni neque, quia dolor exercitationem repellat? Reiciendis molestiae sequi temporibus ipsa, praesentium cupiditate nulla in saepe voluptas vel est iste, quia perspiciatis? Rerum magni est voluptatem aspernatur repellat! Eius nesciunt sit tempora sunt accusantium nam accusamus id, necessitatibus exercitationem ullam alias esse nobis velit ut molestias earum minima eveniet dicta laboriosam atque iure debitis! Veritatis, aliquid laborum? Laborum incidunt neque porro itaque, dicta, unde dolore autem rerum, aliquid repellat illo asperiores quaerat. Quis, magnam quasi. Voluptatibus, omnis.
-                </p>
+                <p class="text-body-1">{{product.opis }}</p>
               </v-col>
             </v-row>
           </v-col>
