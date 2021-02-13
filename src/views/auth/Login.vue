@@ -94,7 +94,7 @@ export default {
         console.log(USER)
         this.$store
             .dispatch('auth/logIn', USER, { root: true })
-            .then(() => this.$router.push({ name: "Home" }))
+            .then(() => this.$router.go(-1))
             .catch( err => {
                 console.log(err)
             })
@@ -115,7 +115,7 @@ export default {
         console.log(USER)
         this.$store
             .dispatch('auth/register', USER, { root: true })
-            .then(() => this.$router.push({ name: "Home" }))
+            .then(() => this.$router.go(-1))
             .catch( err => {
                 console.log("Greska pri registraciji: " + err)
             })

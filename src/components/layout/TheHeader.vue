@@ -47,21 +47,42 @@
                 
                 <v-toolbar-items class="hidden-sm-and-down">
 
-                <!-- Auth butttons -->    
-                <v-btn v-if="isLoggedIn" to="/mojracun" class="remove-text-transform" text>
-                        <v-icon>mdi-account</v-icon>
-                        Moj račun
-                    </v-btn>
+                <!-- Auth butttons -->
+
+                 <!-- ******* Ako je korisnik prijavljen  POČETAK******* -->
+                  <!-- Button with dropdown menu -->
+                <v-menu offset-y v-if="isLoggedIn">
+                    <template v-slot:activator="{ on, attrs }">    
+                        <v-btn v-if="isLoggedIn" class="remove-text-transform" text v-bind="attrs" v-on="on">
+                                <v-icon>mdi-account</v-icon>
+                                Mate Matić
+                        </v-btn>
+                    </template>
+                      <v-list>
+                        <v-list-item
+                        v-for="(item, index) in racunDropDownMenuItems"
+                        :key="index"
+                        @click="item.onClick"
+                        >
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
+                 <!-- ******* Ako je korisnik prijavljen  KRAJ******* -->
+
+                 <!-- ******* Ako korisnik  NIJE prijavljen  POČETAK******* -->
                     <v-btn v-else to="/prijava" class="remove-text-transform" text>
                         <v-icon>mdi-login</v-icon>
                         Prijava
                     </v-btn>
+                 <!-- ******* Ako korisnik  NIJE prijavljen  KRAJ******* -->
+                
 
-                <!-- Shopping basket buttton -->    
-                <v-btn to="/kosarica" class="" text>
-                    <v-icon>mdi-basket-outline</v-icon>
-                    <v-badge color="accent" content="0"></v-badge>
-                </v-btn>
+                    <!-- Shopping basket buttton -->    
+                    <v-btn to="/kosarica" class="" text>
+                        <v-icon>mdi-basket-outline</v-icon>
+                        <v-badge color="accent" content="0"></v-badge>
+                    </v-btn>
                     
                 </v-toolbar-items>
             </v-app-bar>
@@ -119,14 +140,34 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 export default {
     name: "Header",
     data() {
         return {
             drawer: null,
-            isLoggedIn: false
+            racunDropDownMenuItems: [
+            { title: 'Moj račun', onClick: this.otvoriMojRacun},
+            { title: 'Odjava', onClick: this.logOut},  
+        ],
+
         }
-    }
+    },
+    computed: {
+
+        ...mapGetters('auth', ['isLoggedIn'])
+    },
+    methods: {
+        otvoriMojRacun() {
+            this.$router.push({path: '/mojracun'})
+        },
+        logOut() {
+            console.log('logged out')
+            this.$store
+            .dispatch('auth/logOut', { root: true })
+        }
+     }
 }
 </script>
 
