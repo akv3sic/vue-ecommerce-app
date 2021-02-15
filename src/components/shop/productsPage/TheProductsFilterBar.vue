@@ -9,7 +9,7 @@
                 :to="kategorija.id"
                 >
                     <v-list-item-content>
-                        <v-list-item-title v-text="kategorija.imeKategorije"></v-list-item-title>
+                        <v-list-item-title v-text="kategorija.kategorija"></v-list-item-title>
                     </v-list-item-content>  
                 </v-list-item>
             </v-list-item-group>
@@ -23,12 +23,14 @@
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <v-checkbox 
-                    v-for="(brand, id) in brandovi"
-                    :key="id"
-                    :value="brand.id"
-                    :label="brand.imeBranda"
+                    v-for="(brand, brandID) in brandovi"
+                    :key="brandID"
+                    :value="brand.brandID"
+                    :label="brand.brand"
                     v-model="brandoviSelected"
+                    multiple
                     dense
+                    
                      >
                      </v-checkbox>
                 </v-expansion-panel-content>
@@ -62,9 +64,11 @@ export default {
     },
     watch: {
         brandoviSelected() {
+            
             console.log(this.brandoviSelected)
             
             this.brandoviSelected.forEach(brandSelected => {
+                if(brandSelected)
                 console.log(brandSelected)
             });
         }

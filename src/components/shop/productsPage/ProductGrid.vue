@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 import ProductPreview from "@/components/shop/productsPage/VProductPreview"
 
 
@@ -37,8 +38,6 @@ export default {
     name: "ProductGrid",
     components: { ProductPreview },
     data: () => ({
-        isLoading: false, // ovaj podatak dobiti iz vuex store
-        
        
     }),
     props: {
@@ -47,7 +46,10 @@ export default {
             required: true
         }
     },
-   
+   computed: {
+
+        ...mapGetters('products', ['isLoading'])
+   }
 }
 </script>
 
