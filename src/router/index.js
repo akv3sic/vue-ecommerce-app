@@ -26,6 +26,12 @@ const routes = [
     component: () => import("@/views/shop/Product"),
     props: true
   },
+  // about project page
+  {
+    path: '/projekt',
+    name: 'project',
+    component: () => import("@/views/Project")
+  },
   // 404 redirect
   {
     path: '/:catchAll(.*)',

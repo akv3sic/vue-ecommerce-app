@@ -3,7 +3,7 @@
             <v-app-bar app 
                 color="white"
                 height="80"
-                flat
+                elevate-on-scroll
             >
                 <!-- Mobile shopping basket button -->
                 <v-btn to="kosarica" class="hidden-md-and-up" text>
@@ -39,7 +39,7 @@
                       <v-btn to="/trgovina" text>
                         trgovina
                     </v-btn>
-                    <v-btn text>
+                    <v-btn text to="/projekt">
                         projekt
                     </v-btn>
                 </v-toolbar-items>
@@ -114,7 +114,7 @@
                       </v-list-item-icon>
                       <v-list-item-title>Trgovina</v-list-item-title>
                     </v-list-item>
-                      <v-list-item>
+                      <v-list-item to="/projekt">
                       <v-list-item-icon>
                           <v-icon>mdi-information-variant</v-icon>
                       </v-list-item-icon>
