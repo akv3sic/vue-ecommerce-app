@@ -1,18 +1,65 @@
 <template>
 <div>
     <!-- Hero -->
-    <v-container class="my-10 py-10">
+    <v-container>
         <v-row class="py-5 align-center">
             <v-col  cols="12" md="6" class="">
                 <h1 class="ml-4">naša vizija.</h1>
                 <p class="ml-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro impedit ut adipisci quisquam perspiciatis?</p>
+
+                <!-- ******** -->
                 <!-- Controls -->
+                <!-- ******** -->
                 <v-container class="px-0">
                     <v-btn color="primary ml-4 mr-2" href="https://docs.google.com/document/d/1JzsLHWfdC9LEyuukmeVUxToQmCsCsy9Hc-fkxp9aitw/edit?usp=sharing" target="_blank">Pogledajte viziju</v-btn>
-                    <v-btn text class="code-btn mx-2">
-                        <v-icon>mdi-github</v-icon>
-                        Izvorni kod
-                    </v-btn>
+
+                    <!-- Src code button and srcCodeDialog -->
+                    <v-dialog
+                    v-model="srcCodeDialog"
+                    max-width="400"
+                    transition="dialog-bottom-transition"
+                    >
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn 
+                            text
+                            class="code-btn mx-2"
+                            v-bind="attrs"
+                            v-on="on"
+                            >
+                            <v-icon>mdi-github</v-icon>
+                            Izvorni kod
+                        </v-btn>
+                    </template>
+                    <v-card>
+                        <v-card-title class="">
+                        
+                        </v-card-title>
+
+                        <v-card-text>
+                            <ul>
+                                <li>
+                                  <a href="https://github.com/antekvesic/dashdetailing-frontend" target="_blank"> Frontend repozitorij </a>   
+                                </li>
+                                <li>
+                                  <a href="https://github.com/VjekoRezic/FlaskBackend" target="_blank"> Backend repozitorij </a>  
+                                </li>
+                            </ul>
+                            
+                        </v-card-text>
+
+
+                        <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="primary"
+                            text
+                            @click="srcCodeDialog = false"
+                        >
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                    </v-dialog>
                 </v-container>
                 
             </v-col>
@@ -54,7 +101,7 @@
     </v-container>
 
     <!-- Korištene tehnologije start -->
-    <v-container fluid blue-grey lighten-5>
+    <v-container fluid blue-grey lighten-5 class="mt-3">
       <v-row class="py-10">
           <v-col cols="6" sm="3">
               <v-img class="img-grayscale" src="https://seeklogo.com/images/V/vuejs-logo-17D586B587-seeklogo.com.png" height="50px" contain></v-img>
@@ -80,7 +127,7 @@
 export default {
     name: "Projekt",
     data: () => ({
-
+        srcCodeDialog: false,
   }),
   computed: {
       githubHeroItem() {
