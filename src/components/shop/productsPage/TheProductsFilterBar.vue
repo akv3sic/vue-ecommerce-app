@@ -6,7 +6,7 @@
                 <v-list-item
                 v-for="(kategorija, id) in kategorije"
                 :key="id"
-                :to="kategorija.id"
+                :to="'/kategorija/' + kategorija.kategorijaID + '/' + 'slug-kategorije'"
                 >
                     <v-list-item-content>
                         <v-list-item-title v-text="kategorija.kategorija"></v-list-item-title>
@@ -70,6 +70,8 @@ export default {
             this.brandoviSelected.forEach(brandSelected => {
                 if(brandSelected)
                 console.log(brandSelected)
+                console.log(this.$route.params)
+                this.$store.dispatch('products/fetchProducts', this.$route.params.id, this.brandSelected, {root: true})
             });
         }
     }

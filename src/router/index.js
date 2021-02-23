@@ -26,6 +26,13 @@ const routes = [
     component: () => import("@/views/shop/Product"),
     props: true
   },
+  // pojedinačna kategorija
+  {
+    path: '/kategorija/:id/:slug',
+    name: 'category',
+    component: () => import("@/views/shop/ShopCategory"),
+    props: true
+  },
   // about project page
   {
     path: '/projekt',

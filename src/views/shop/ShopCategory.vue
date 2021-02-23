@@ -10,6 +10,7 @@
 import SearchBar from "@/components/shop/TheSearchBar"
 import PromoBanner from "@/components/shop/PromoBanner"
 import Page from "@/components/shop/productsPage/TheProductsPage"
+import store from "@/store";
 
 export default {
     name: "shopHome",
@@ -17,15 +18,14 @@ export default {
     data: () => ({
 
     }),
-    mounted() {
-        this.fetchProducts();
+     beforeRouteEnter(to, from, next) {
+      store.dispatch('products/fetchProducts', to.params.id, {root: true})
+      next()
     },
-    methods: {
-        fetchProducts() {
-            this.$store
-                .dispatch('products/fetchProducts', null, {root: true})
-        }
-    }
+     beforeRouteUpdate(to, from, next) {
+      store.dispatch('products/fetchProducts', to.params.id, {root: true})
+      next()
+    },
 }
 </script>
 

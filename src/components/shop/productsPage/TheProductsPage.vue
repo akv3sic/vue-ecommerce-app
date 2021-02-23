@@ -76,14 +76,6 @@ export default {
     watch: {
 
     },
-    mounted() {
-        this.fetchProducts();
-    },
-    methods: {
-        fetchProducts() {
-            this.$store
-                .dispatch('products/fetchProducts', {root: true})
-        }
-    }
+    
 }
 </script>

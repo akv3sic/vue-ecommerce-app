@@ -26,14 +26,16 @@ const getters = {
 
 // actions
 const actions = {
-    fetchProducts( {commit}, params) {
+    fetchProducts( {commit}, categoryId, brandId) {
         commit('FETCH_START')
-        console.log(params)
-        if(params)
-          console.log("U params ima nesto")
+        console.log(categoryId)
+        let url = '/proizvodi'
+        if(categoryId)
+          url = '/proizvodi?kategorijaID=' + categoryId
         else
-          console.log("Params su prazni")
-        httpClient.get("/proizvodi")
+          console.log("categoryId je praznan")
+        console.log('Odabrani brand' + brandId)
+        httpClient.get(url)
         .then((response) => {
             console.log(response.data);
             commit('FETCH_END', response.data)
