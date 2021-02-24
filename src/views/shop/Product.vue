@@ -21,8 +21,11 @@
                 <h1 class="text-h4 font-weight-light primary--text">{{ product.ime }}</h1>
                 <span class="text-subtitle-1">SKU: N/A</span><br>
                 <span class="text-h5 font-weight-bold">{{ product.cijena }} KM</span><br><br>
+
+            <!-- Quantity counter -->
                 <span class="text-button">Količina:</span>
-                <v-text-field value="1" type="number" :rules="quantityRules" outlined shaped></v-text-field>
+                <v-text-field min="1" max="100" v-model="quantityCounter" type="number" outlined shaped single-line hide-details></v-text-field>
+
                 <v-btn class="mt-2 mb-16" color="primary" >Dodaj u košaricu</v-btn>
                 <div class="mb-3">
                   <v-icon class="mx-1">mdi-facebook</v-icon>
@@ -97,9 +100,7 @@ export default {
       // mock
       // product:  {'id':'1', 'slug':'sonax-pasta', 'name':"SONAX pasta za poliranje", 'brand':'Sonax', 'kategorija': 'Pribor i alati za poliranje', 'price': '55.90', 'imgLink': 'https://www.carbox.ba/wp-content/uploads/2019/02/296141-SONAX-Politura-sa-voskom-crna.jpg'},
     
-      quantityRules: [
-        
-      ],
+      quantityCounter: 0,
     }),
 }
 </script>
