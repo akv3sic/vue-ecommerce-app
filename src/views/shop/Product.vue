@@ -22,21 +22,26 @@
                 <span class="text-subtitle-1">SKU: N/A</span><br>
                 <span class="text-h5 font-weight-bold">{{ product.cijena }} KM</span><br><br>
 
-            <!-- Quantity counter -->
-                <span class="text-button">Količina:</span>
-                <v-text-field min="1" max="100" v-model="quantityCounter" type="number" outlined shaped single-line hide-details></v-text-field>
+                <!-- controls START -->
+                <div class="no-print">
+                      <!-- Quantity counter -->
+                  <span class="text-button">Količina:</span>
+                  <v-text-field min="1" max="100" v-model="quantityCounter" type="number" outlined shaped single-line hide-details></v-text-field>
 
-                <v-btn class="mt-2 mb-16" color="primary" >Dodaj u košaricu</v-btn>
-                <div class="mb-3">
-                  <v-icon class="mx-1">mdi-facebook</v-icon>
-                  <v-icon class="mx-1">mdi-whatsapp</v-icon>
-                  <v-icon class="mx-1">mdi-printer</v-icon>
-                  <v-icon class="mx-1">mdi-email</v-icon>
+                  <v-btn class="mt-2 mb-16" color="primary" >Dodaj u košaricu</v-btn>
+                  <div class="mb-3">
+                    <v-icon class="mx-1">mdi-facebook</v-icon>
+                    <v-icon class="mx-1">mdi-whatsapp</v-icon>
+                    <v-icon class="mx-1" @click="print">mdi-printer</v-icon>
+                    <v-icon class="mx-1">mdi-email</v-icon>
+                  </div>
                 </div>
+                <!-- controls END -->
+
               </v-col>
             <!-- Slika koja se prikazuje samo na sm-and-down -->
             </v-row>
-             <v-row class="hidden-md-and-up">
+             <v-row class="hidden-md-and-up no-print">
               <zoom-on-hover :img-normal="product.url_slike"></zoom-on-hover>
             </v-row>
             <!-- Opis proizvoda -->
@@ -44,7 +49,7 @@
               <v-col order="-1">
                 <hr>
                 <h2 class="text-overline">Opis proizvoda</h2>
-                <p class="text-body-1">{{product.opis }}</p>
+                <p class="text-body-1">{{product.opis }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nihil repellendus possimus laboriosam ducimus earum eaque veniam animi modi doloremque ipsa expedita necessitatibus numquam aspernatur saepe, debitis unde neque, minus distinctio iste!</p>
               </v-col>
             </v-row>
           </v-col>
@@ -102,5 +107,18 @@ export default {
     
       quantityCounter: 0,
     }),
+    methods: {
+      print()
+      {
+        window.print();
+      }
+    }
 }
 </script>
+
+<style lang="css">
+  @media print
+{
+.no-print {display:none;}
+}
+</style>

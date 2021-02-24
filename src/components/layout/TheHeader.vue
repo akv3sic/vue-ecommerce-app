@@ -1,5 +1,5 @@
 <template>
-        <div class="header">
+        <div class="header no-print">
             <v-app-bar app 
                 color="white"
                 height="80"
