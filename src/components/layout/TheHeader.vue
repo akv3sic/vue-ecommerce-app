@@ -121,7 +121,7 @@
                       <v-list-item-title>Projekt</v-list-item-title>
                     </v-list-item>
                   <!-- Auth butttons -->
-                    <v-list-item v-if="isLoggedIn" to="/mojracun">
+                    <v-list-item v-if="isLoggedIn" to="/moj-racun">
                       <v-list-item-icon>
                           <v-icon>mdi-account</v-icon>
                       </v-list-item-icon>
@@ -160,7 +160,7 @@ export default {
     },
     methods: {
         otvoriMojRacun() {
-            this.$router.push({path: '/mojracun'})
+            this.$router.push({path: '/moj-racun'})
         },
         logOut() {
             console.log('logged out')

@@ -33,6 +33,35 @@ const routes = [
     component: () => import("@/views/shop/ShopCategory"),
     props: true
   },
+  /****************************/
+  /****** moj račun start *****/
+  /****************************/
+
+  {
+    path: '/moj-racun',
+    name: 'my-account-home',
+    component: () => import("@/views/userAccount/MyAccount"),
+    children: [
+
+      {
+        path: 'narudzbe',
+        name: 'my-account-orders',
+        component: () => import("@/views/userAccount/MyAccountOrders"),
+
+      },
+      {
+        path: 'placanje',
+        name: 'my-account-payment',
+        component: () => import("@/views/userAccount/MyAccountPayment"),
+
+      }
+    ]
+  },
+
+  /***************************/
+  /****** moj račun end *****/
+  /**************************/
+
   // about project page
   {
     path: '/projekt',

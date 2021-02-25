@@ -1,5 +1,7 @@
 <template>
 <div>
+    <Header />
+
     <!-- Hero -->
     <v-container>
         <v-row class="py-5 align-center">
@@ -124,8 +126,11 @@
 </template>
 
 <script>
+import Header from "@/components/layout/TheHeader";
+
 export default {
     name: "Projekt",
+    components: { Header },
     data: () => ({
         srcCodeDialog: false,
   }),

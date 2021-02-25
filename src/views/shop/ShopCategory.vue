@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="pa-2">
+    <Header />
     <SearchBar />
     <PromoBanner />
     <Page />
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+import Header from "@/components/layout/TheHeader";
 import SearchBar from "@/components/shop/TheSearchBar"
 import PromoBanner from "@/components/shop/PromoBanner"
 import Page from "@/components/shop/productsPage/TheProductsPage"
@@ -14,7 +16,7 @@ import store from "@/store";
 
 export default {
     name: "shopHome",
-    components: { SearchBar, PromoBanner, Page },
+    components: { Header, SearchBar, PromoBanner, Page },
     data: () => ({
 
     }),

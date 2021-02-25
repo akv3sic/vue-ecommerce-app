@@ -1,5 +1,6 @@
 <template>
     <v-container>
+       <Header/>
         <v-row>
             <!-- Navigacija za povratak natrag -->
             <v-breadcrumbs :items="breadCrumbs" divider=">"></v-breadcrumbs>
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import Header from "@/components/layout/TheHeader";
 import { mapGetters } from 'vuex'
 import store from "@/store";
 import Vue from 'vue'
@@ -67,6 +69,7 @@ Vue.use(ZoomOnHover);
 
 export default {
     name: "productView",
+    components: { Header },
     props: {
       slug: {
         type: String,
