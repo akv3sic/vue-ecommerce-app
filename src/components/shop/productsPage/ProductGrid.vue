@@ -7,21 +7,24 @@
             <h4 class="text-overline">Nažalost, trenutno nema proizvoda.</h4>
         </v-row>   
         <v-row v-else>
-            <h4 class="text-overline">Broj prikazanih proizvoda: {{ products.length }}.</h4>
+            <v-container>
+               <h4 class="text-overline">Broj prikazanih proizvoda: {{ products.length }}.</h4>
+                <v-row>
+                    <ProductPreview 
+                        v-for="product in products"
+                        :product=product
+                        :key="product.id"
+                    /> 
+                </v-row> 
+            </v-container>
+            
             <v-row>
-                <ProductPreview 
-                    v-for="product in products"
-                    :product=product
-                    :key="product.id"
-                /> 
-            </v-row>
-            <v-row>
-            <div class="mx-auto my-6">
+                <v-col cols="12"> 
                     <v-pagination
                     :length="1"
                     disabled
                     ></v-pagination>
-                </div>
+                </v-col>
             </v-row>
 
         </v-row>
