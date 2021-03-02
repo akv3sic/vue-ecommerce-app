@@ -33,6 +33,13 @@ const routes = [
     component: () => import("@/views/shop/ShopCategory"),
     props: true
   },
+  // kosarica
+  {
+    path: '/kosarica',
+    name: 'shoppingCart',
+    component: () => import("@/views/shop/ShoppingCart"),
+  },
+
   /****************************/
   /****** moj račun start *****/
   /****************************/
