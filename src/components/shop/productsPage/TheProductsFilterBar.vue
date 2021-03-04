@@ -22,17 +22,21 @@
                     Brandu
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                    <v-checkbox 
-                    v-for="(brand, brandID) in brandovi"
-                    :key="brandID"
-                    :value="brand.brandID"
-                    :label="brand.brand"
-                    v-model="brandoviSelected"
-                    multiple
+                    <v-radio-group
+                    v-model="brandsRadioGroup"
                     dense
-                    
-                     >
-                     </v-checkbox>
+                    >
+                        <v-radio 
+                        v-for="(brand, brandID) in brandovi"
+                        :key="brandID"
+                        :value="brand.brandID"
+                        :label="brand.brand"
+                        off-icon="mdi-checkbox-blank-outline"
+                        on-icon="mdi-check-box-outline"
+                        >
+                        </v-radio>
+                    </v-radio-group>
+                   
                 </v-expansion-panel-content>
             </v-expansion-panel>
         
@@ -56,23 +60,25 @@
 export default {
     name: "ProductsFilterBar",
     data: () => ({
-       brandoviSelected: [],
+       brandsRadioGroup: null
     }),
     props: {
         kategorije: { type: Array, required: true },
         brandovi: { type: Array, required: true }
     },
     watch: {
-        brandoviSelected() {
+        brandsRadioGroup() {
+            console.log('ID odabranog branda: '+ this.brandsRadioGroup)
+            let paramsList = {
+                categoryId: this.$route.params.id,
+                brandId: this.brandsRadioGroup
+            }
             
-            console.log(this.brandoviSelected)
-            
-            this.brandoviSelected.forEach(brandSelected => {
-                if(brandSelected)
-                console.log(brandSelected)
-                console.log(this.$route.params)
-                this.$store.dispatch('products/fetchProducts', this.$route.params.id, this.brandSelected, {root: true})
-            });
+            this.$store.dispatch('products/fetchProducts', paramsList, {root: true})
+        },
+        // resetiraj odabir branda kad se ruta promijeni
+        $route(){
+            this.brandsRadioGroup = null
         }
     }
 }

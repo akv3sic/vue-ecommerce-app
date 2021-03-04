@@ -26,15 +26,26 @@ const getters = {
 
 // actions
 const actions = {
-    fetchProducts( {commit}, categoryId, brandId) {
+    fetchProducts( {commit}, {categoryId, brandId}) {
         commit('FETCH_START')
-        console.log(categoryId)
-        let url = '/proizvodi'
-        if(categoryId)
-          url = '/proizvodi?kategorijaID=' + categoryId
-        else
-          console.log("categoryId je praznan")
-        console.log('Odabrani brand' + brandId)
+        let url = '/proizvodi' // default
+
+        // check for categoryId and brandId
+        if(categoryId != null && brandId != null)
+          {
+            url = '/proizvodi?kategorijaID=' + categoryId + '&brandID=' + brandId
+          }
+        else if(categoryId)
+          {
+            url = '/proizvodi?kategorijaID=' + categoryId
+          }
+        else if(brandId)
+          {
+            console.log("CategoryId je prazan.")
+            console.log('Selected brand ID: ' + brandId)
+            url = '/proizvodi?brandID=' + brandId
+          }
+         
         httpClient.get(url)
         .then((response) => {
             console.log(response.data);

@@ -21,11 +21,11 @@ export default {
 
     }),
      beforeRouteEnter(to, from, next) {
-      store.dispatch('products/fetchProducts', to.params.id, {root: true})
+      store.dispatch('products/fetchProducts', {categoryId: to.params.id}, {root: true})
       next()
     },
      beforeRouteUpdate(to, from, next) {
-      store.dispatch('products/fetchProducts', to.params.id, {root: true})
+      store.dispatch('products/fetchProducts', {categoryId: to.params.id}, {root: true})
       next()
     },
 }

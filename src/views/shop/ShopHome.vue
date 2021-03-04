@@ -25,7 +25,7 @@ export default {
     methods: {
         fetchProducts() {
             this.$store
-                .dispatch('products/fetchProducts', null, {root: true})
+                .dispatch('products/fetchProducts', {categoryId: null}, {root: true})
         }
     }
 }
