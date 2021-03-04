@@ -50,7 +50,7 @@
               <v-col order="-1">
                 <hr>
                 <h2 class="text-overline">Opis proizvoda</h2>
-                <p class="text-body-1">{{product.opis }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nihil repellendus possimus laboriosam ducimus earum eaque veniam animi modi doloremque ipsa expedita necessitatibus numquam aspernatur saepe, debitis unde neque, minus distinctio iste!</p>
+                <p class="text-body-1">{{product.opis }}</p>
               </v-col>
             </v-row>
           </v-col>

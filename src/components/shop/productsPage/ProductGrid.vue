@@ -3,8 +3,8 @@
         <v-row v-if="isLoading" class="pt-10" dense> 
             <h4 class="text-overline">Učitavanje proizvoda...</h4>
         </v-row>
-        <v-row v-else-if="products.length === 0" class="pt-10" dense> 
-            <h4 class="text-overline">Nažalost, trenutno nema proizvoda.</h4>
+        <v-row v-else-if="products.length === 0 || products==='Nema proizvoda koji odgovaraju vašem filteru.'" class="pt-10" dense> 
+            <h4 class="text-overline">Nažalost, ovdje trenutno nema proizvoda.</h4>
         </v-row>   
         <v-row v-else>
             <v-container>
@@ -45,7 +45,7 @@ export default {
     }),
     props: {
         products: {
-            type: Array,
+            type: [ Array, String ],
             required: true
         }
     },
