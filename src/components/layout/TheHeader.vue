@@ -97,7 +97,7 @@
                     <!-- Shopping basket buttton -->    
                     <v-btn to="/kosarica" class="" text small>
                         <v-icon>mdi-basket-outline</v-icon>
-                        <v-badge color="accent" content="0"></v-badge>
+                        <v-badge color="accent" :content="numberOfItems > 0 ? numberOfItems : '0'"></v-badge>
                     </v-btn>
                     
                 </v-toolbar-items>
@@ -177,7 +177,9 @@ export default {
     },
     computed: {
 
-        ...mapGetters('auth', ['isLoggedIn'])
+        ...mapGetters('auth', ['isLoggedIn']),
+        ...mapGetters('cart', ['numberOfItems'])
+
     },
     methods: {
         otvoriMojRacun() {
@@ -187,7 +189,7 @@ export default {
             console.log('logged out')
             this.$store
             .dispatch('auth/logOut', { root: true })
-        }
+        },
      }
 }
 </script>

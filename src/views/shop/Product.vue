@@ -27,9 +27,9 @@
                 <div class="no-print">
                       <!-- Quantity counter -->
                   <span class="text-button">Količina:</span>
-                  <v-text-field min="1" max="100" v-model="quantityCounter" type="number" outlined shaped single-line hide-details></v-text-field>
+                  <v-text-field min="1" max="100" value="1" default="1" v-model="quantityCounter" type="number" outlined shaped single-line hide-details></v-text-field>
 
-                  <v-btn class="mt-2 mb-16" color="primary" >Dodaj u košaricu</v-btn>
+                  <v-btn class="mt-2 mb-16" color="primary" @click="addToCart({ id: product.id, quantity: quantityCounter })" >Dodaj u košaricu</v-btn>
                   <div class="mb-3">
                     <v-icon class="mx-1">mdi-facebook</v-icon>
                     <v-icon class="mx-1">mdi-whatsapp</v-icon>
@@ -61,6 +61,7 @@
 <script>
 import Header from "@/components/layout/TheHeader";
 import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import store from "@/store";
 import Vue from 'vue'
 import ZoomOnHover from "vue-zoom-on-hover";
@@ -108,9 +109,12 @@ export default {
       // mock
       // product:  {'id':'1', 'slug':'sonax-pasta', 'name':"SONAX pasta za poliranje", 'brand':'Sonax', 'kategorija': 'Pribor i alati za poliranje', 'price': '55.90', 'imgLink': 'https://www.carbox.ba/wp-content/uploads/2019/02/296141-SONAX-Politura-sa-voskom-crna.jpg'},
     
-      quantityCounter: 0,
+      quantityCounter: 1,
     }),
     methods: {
+    // dodavanje u košaricu
+    ...mapActions('cart', ['addToCart']),
+    // ispis  
       print()
       {
         window.print();
