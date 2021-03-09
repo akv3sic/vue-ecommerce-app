@@ -29,7 +29,7 @@ const actions = {
                     // save token to local storage
                     localStorage.setItem('token', token)
                     // set header
-                    httpClient.defaults.headers.common['Authorization'] = token
+                    httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
                     // call mutation
                     commit('auth_success', token, user)
                     resolve(response)
@@ -56,7 +56,7 @@ const actions = {
                     // save token to local storage
                     localStorage.setItem('token', token)
                     // set header
-                    httpClient.defaults.headers.common['Authorization'] = token
+                    httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
                     // call mutation
                     commit('auth_success', token, user)
                     resolve(response)
@@ -71,24 +71,43 @@ const actions = {
     },
     logOut({commit}) {
         return new Promise((resolve, reject) => {
-            // commit('logout')
             httpClient.post("/odjava")
-            .then(response => {
-                console.log(response.data)
-                
-                // TREBA LI JOŠ NEŠTO?
+            .then((response) => {
+                // Success :)
+                console.log(response);
+
                 commit('logout')
                 localStorage.removeItem('token')
                 delete httpClient.defaults.headers.common['Authorization']
                 resolve(response)
+                console.log("Korisnik uspješno odjavljen.")
             })
-            .catch(err => {
-                console.log(err)
-                reject(err)
-            })
+            .catch((error) => {
+                // Error :\
+                if (error.response) {
+                    /*
+                     * The request was made and the server responded with a
+                     * status code that falls out of the range of 2xx
+                     */
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    /*
+                     * The request was made but no response was received, `error.request`
+                     * is an instance of XMLHttpRequest in the browser and an instance
+                     * of http.ClientRequest in Node.js
+                     */
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request and triggered an Error
+                    console.log('Error', error.message);
+                }
+                console.log(error.config);
+                reject(error)
+            });
         })
     }
-
 }
 
 // mutations

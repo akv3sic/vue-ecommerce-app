@@ -186,7 +186,6 @@ export default {
             this.$router.push({path: '/moj-racun'})
         },
         logOut() {
-            console.log('logged out')
             this.$store
             .dispatch('auth/logOut', { root: true })
         },
