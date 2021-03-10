@@ -1,4 +1,6 @@
 import httpClient from '@/common/httpClient'
+import Swal from 'sweetalert2'
+import router from '../../router'
 
 // initial state
 const state = () => ({
@@ -59,6 +61,7 @@ const actions = {
                     httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
                     // call mutation
                     commit('auth_success', token, user)
+                    commit('registration_succes_alert')
                     resolve(response)
                 }
             })
@@ -126,7 +129,18 @@ const mutations = {
     logout(state){
         state.status = ''
         state.token = ''
-      }
+    },
+
+    /* successful registration alert */
+    registration_succes_alert(){
+        Swal.fire({
+            text: 'Račun uspješno napravljen.',
+            icon: 'success',
+            confirmButtonText: 'Nastavak'
+          })
+          .then(() => router.go(-1))
+    }
+    /*********************************/
 }
 
 export default {
