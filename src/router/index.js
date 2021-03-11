@@ -80,9 +80,8 @@ const routes = [
 
       {
         path: 'proizvodi',
-        name: '',
-       
-
+        name: 'products-list',
+        component: () => import("@/views/admin/products/ProductsList")
       },
       {
         path: 'korisnici',

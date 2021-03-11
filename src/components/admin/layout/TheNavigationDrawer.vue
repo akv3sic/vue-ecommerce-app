@@ -47,6 +47,7 @@
                     <v-list-item
                     v-for="child in item.items"
                     :key="child.title"
+                    :to="child.to"
                     >
                     <v-list-item-content>
                         <v-list-item-title v-text="child.title"></v-list-item-title>
@@ -79,9 +80,9 @@ export default {
         {
           icon: 'mdi-package-variant-closed',
           items: [
-            { title: 'Svi proizvodi' },
-            { title: 'Dodaj novi' },
-            { title: 'Kategorije' },
+            { title: 'Svi proizvodi', to: '/admin/proizvodi'},
+            { title: 'Dodaj novi', to: '/admin/proizvodi-dodaj-novi' },
+            { title: 'Kategorije', to: '/admin/proizvodi-kategorije' },
           ],
           title: 'Proizvodi',
         },

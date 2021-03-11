@@ -3,7 +3,6 @@
         <v-app-bar
             app
             flat
-            color="transparent"
         >
             <v-app-bar-nav-icon @click="setDrawer(!drawer)"></v-app-bar-nav-icon>
             <v-toolbar-title>Upravljačka ploča</v-toolbar-title>
@@ -29,8 +28,7 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
-           
-
+          
             <v-btn icon>
                 <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
