@@ -4,12 +4,13 @@ import auth from './modules/auth'
 import products from './modules/products'
 import product from './modules/product'
 import cart from './modules/cart'
+import admin from './modules/admin'
 
 Vue.use(Vuex);
 
 
 export default new Vuex.Store({
   modules: {
-      auth, products, product, cart
+      auth, products, product, cart, admin
   }
 });
