@@ -84,9 +84,10 @@ const routes = [
         component: () => import("@/views/admin/products/ProductsList")
       },
       {
-        path: 'korisnici',
-        
-      }
+        path: 'proizvodi-dodaj-novi',
+        name: 'products-add-new',
+        component: () => import("@/views/admin/products/ProductsAddNew")
+      },
     ]
   },
   /*^^^^^^^^^^^^^^^^^^^^^^^^^*/
