@@ -1,12 +1,6 @@
 <template>
     <v-container>
-                <!-- AKO se proizvodi učitavaju -->
-                <v-row v-if="isLoading" class="pt-10" dense> 
-                    <h4 class="text-overline">Učitavanje proizvoda...</h4>
-                </v-row>
-                <!-- ************************** -->
-
-                <v-row class="mb-2">
+                <v-row class="">
                     <v-col>
                         <span class="text-h5">Proizvodi</span>
                         <span class="text-h5 grey--text"> ({{ products.length }})</span>
@@ -15,9 +9,15 @@
                         </div>
                     </v-col>
                 </v-row>
-                
+
+                 <!-- AKO se proizvodi učitavaju -->
+                <v-row v-if="isLoading" class="mt-5" dense> 
+                    <h4 class="text-overline ml-2">Učitavanje proizvoda...</h4>
+                </v-row>
+                <!-- ************************** -->
+
                 <!-- **** ZAGLAVLJE liste **** -->
-                <v-row class="hidden-sm-and-down">
+                <v-row v-if="!isLoading" class="hidden-sm-and-down mt-1">
                     <v-col class="text-center" cols="1">
                         <v-icon class="mb-1">mdi-image</v-icon>
                     </v-col>
