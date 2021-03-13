@@ -46,7 +46,7 @@
                                                 <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
                                             </v-col>
                                             <v-col cols="12">
-                                                <v-text-field v-model="phoneNum" label="Broj mobitela"></v-text-field>
+                                                <v-text-field v-model="phoneNum" label="Broj mobitela" hint="Ovaj podatak možete unijeti i kasnije."></v-text-field>
                                             </v-col>
                                             <v-col cols="12">
                                                 <v-text-field v-model="password" :append-icon="showRegPassword1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="showRegPassword1 ? 'text' : 'password'" name="input-10-1" label="Lozinka" hint="Minimalno 8 znakova." counter @click:append="showRegPassword1 = !showRegPassword1"></v-text-field>
