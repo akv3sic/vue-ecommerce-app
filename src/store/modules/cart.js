@@ -42,9 +42,13 @@ const state = () => ({
         commit('SAVE_CART')
     },
     decrementQuantity( {commit}, item ) {
-        commit('SAVE_CART')
         commit('DECREMENT_QUANTITY', item)
-    }
+        commit('SAVE_CART')
+    },
+    clearCart( {commit} ) {
+        commit('RESET_CARD')
+        commit('SAVE_CART')
+    } 
  }
  
  // mutations
@@ -91,6 +95,9 @@ const state = () => ({
     SAVE_CART(state) {
         window.localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
         console.log('Card items saved to local storage.')
+    },
+    RESET_CARD(state) {
+        state.cartItems = []
     }
  }
  

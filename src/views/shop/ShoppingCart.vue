@@ -92,14 +92,25 @@
                 <!--*******-->
 
                 <!-- ACTIONS -->
-                <v-row>
-                    <v-col class="text-end">
-                        <v-btn class="primary">
-                            Potvrdi kupovinu
-                        </v-btn>
-                    </v-col>
-                </v-row>
+                <v-container class="text-end pa-0">
+                    <v-row>
+                        <v-col >
+                            <v-btn class="primary" @click="confirmThePurchase(isLoggedIn, cartItems)">
+                                Potvrdi kupovinu
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-container>
                 <!--*******-->
+                
+                <!-- OVERLAY if loading -->
+                <v-overlay :value="isLoading">
+                    <v-progress-circular
+                        indeterminate
+                        size="64"
+                    ></v-progress-circular>
+                </v-overlay>
+                <!-- ****************** -->
             </v-container>
 
             <!--OVAJ DIO RENDERA SE SAMO KAD JE KOŠARICA PRAZNA -->
@@ -126,6 +137,7 @@ export default {
     name: 'shoppingCart',
     components: { Header },
     data: () => ({
+        overlay: false,
         // MOCK
         /*
          products: [
@@ -137,10 +149,32 @@ export default {
          */
     }),
     computed: {
-        ...mapGetters('cart', ['cartItems'])
+        ...mapGetters('checkout', ['isLoading']),
+        ...mapGetters('cart', ['cartItems']),
+        ...mapGetters('auth', ['isLoggedIn']),
     },
     methods: {
-        ...mapActions('cart', ['removeFromCart', 'incrementQuantity', 'decrementQuantity'])
+        confirmThePurchase(isLoggedIn, payload){
+            if(!isLoggedIn)
+                this.$router.push('/prijava')
+            else
+            {
+                console.log('Košarica:  ' + JSON.stringify(payload))
+                const cartData = {
+                    proizvodi: this.payload,
+                }
+                this.$store
+                    .dispatch('checkout/callCheckout', cartData, { root: true })
+                    .catch( err => {
+                        console.log("Greška na checkoutu: " + err)
+                    })
+                    .then(setTimeout(() => { this.$router.push('trgovina')}, 1500))
+                    .then(setTimeout(() => { this.clearCart() }, 1500))
+                console.log('Kupovina obavljena.') 
+            }
+        },
+
+        ...mapActions('cart', ['removeFromCart', 'incrementQuantity', 'decrementQuantity', 'clearCart'])
     }
 }
 </script>
