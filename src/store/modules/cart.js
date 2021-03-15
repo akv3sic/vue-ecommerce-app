@@ -1,12 +1,14 @@
-// import httpClient from '@/common/httpClient'
-
+import httpClient from '@/common/httpClient'
+import qs from 'qs'
 // at page load first read value from Local storage
 let cartItems = window.localStorage.getItem('cartItems');
 
 
 // initial state
 const state = () => ({
-    cartItems: cartItems ? JSON.parse(cartItems) : []
+    cartItems: cartItems ? JSON.parse(cartItems) : [], // just crucial data (id and quantity) here
+    products: [], // additional products data fetched here
+    isLoading: true
  })
  
  // getters
@@ -21,6 +23,12 @@ const state = () => ({
             n = n + Number(item.quantity)
         });
         return n
+    },
+    products(state) {
+        return state.products;
+    },
+    isCartDataLoading(state) {
+        return state.isLoading;
     }
  }
  
@@ -48,6 +56,25 @@ const state = () => ({
     clearCart( {commit} ) {
         commit('RESET_CARD')
         commit('SAVE_CART')
+    },
+    fetchCartProducts( {commit}, productIdParams) {
+        commit('FETCH_START')
+        const endpoint = 'kosarica'
+        httpClient.get(endpoint, {
+            params: {
+                id: productIdParams,
+                },
+                paramsSerializer: (params) => {
+                return qs.stringify(params, { arrayFormat: 'repeat' })
+                },
+        })
+        .then((response) => {
+            console.log(response.data);
+            commit('FETCH_END', response.data.proizvodi)
+          })
+        .catch(err => {
+           console.log(err)
+        })
     } 
  }
  
@@ -98,6 +125,13 @@ const state = () => ({
     },
     RESET_CARD(state) {
         state.cartItems = []
+    },
+    FETCH_START(state) { 
+        state.isLoading = true 
+    },
+    FETCH_END(state, products) {
+        state.products = products
+        state.isLoading = false
     }
  }
  
