@@ -71,6 +71,7 @@ export default {
         menuItems: [
           { title: 'Pregled računa', icon: 'mdi-account', to: '/moj-racun'},
           { title: 'Moje narudžbe', icon: 'mdi-package-variant-closed', to: '/moj-racun/narudzbe' },
+          { title: 'Moji podatci', icon: 'mdi-account-details-outline', to: '/moj-racun/moji-podatci' },
           { title: 'Plaćanje', icon: 'mdi-credit-card-outline', to: '/moj-racun/placanje' },
           { title: 'Pomoć', icon: 'mdi-help-box' },
           { title: 'Odjava', icon: 'mdi-logout' },

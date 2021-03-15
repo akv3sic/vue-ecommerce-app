@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100%;">
-        <v-card class="mb-2" height="30%">
+        <v-card class="mb-2">
             <v-container>
                 <v-row>
                     <v-col>

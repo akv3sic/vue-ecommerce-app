@@ -57,6 +57,12 @@ const routes = [
 
       },
       {
+        path: 'moji-podatci',
+        name: 'my-account-details',
+        component: () => import("@/views/userAccount/MyAccountDetails"),
+
+      },
+      {
         path: 'placanje',
         name: 'my-account-payment',
         component: () => import("@/views/userAccount/MyAccountPayment"),
