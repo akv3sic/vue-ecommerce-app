@@ -1,5 +1,5 @@
 <template>
-    <div class="pa-2">
+    <div class="pa-2" :class="{'pa-0':$vuetify.breakpoint.xs, 'px-8':$vuetify.breakpoint.sm,'px-8':$vuetify.breakpoint.md, 'px-16':$vuetify.breakpoint.lgAndUp}">
     <Header/>
     <SearchBar />
     <PromoBanner />
