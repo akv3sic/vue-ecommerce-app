@@ -85,11 +85,11 @@ export default {
     // metoda za validaciju i login
     validateAndLogIn() {
       if (this.$refs.loginForm.validate()) {
-        // 
-        console.log("Korisnik prijavljen")
+
         const USER = {
             email: this.loginEmail,
-            lozinka: this.loginPassword
+            lozinka: this.loginPassword,
+            admin_required: 0               // to be deleted in future
         }
         console.log(USER)
         this.$store
@@ -103,8 +103,7 @@ export default {
     // metoda za validaciju i registraciju
      validateAndRegister() {
       if (this.$refs.registerForm.validate()) {
-        // 
-        console.log("Korisnik registriran")
+   
         const USER = {
             email: this.email,
             lozinka: this.password,
