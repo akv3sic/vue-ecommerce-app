@@ -37,6 +37,7 @@
                             v-for="item in menuItems"
                             :key="item.title"
                             :to="item.to"
+                            @click="item.action"
                             exact
                             link
                             :class="{'py-1': $vuetify.breakpoint.mdAndUp}"
@@ -69,16 +70,23 @@ export default {
   data () {
       return {
         menuItems: [
-          { title: 'Pregled računa', icon: 'mdi-account', to: '/moj-racun'},
-          { title: 'Moje narudžbe', icon: 'mdi-package-variant-closed', to: '/moj-racun/narudzbe' },
-          { title: 'Moji podatci', icon: 'mdi-account-details-outline', to: '/moj-racun/moji-podatci' },
-          { title: 'Plaćanje', icon: 'mdi-credit-card-outline', to: '/moj-racun/placanje' },
-          { title: 'Pomoć', icon: 'mdi-help-box' },
-          { title: 'Odjava', icon: 'mdi-logout' },
+          { title: 'Pregled računa', icon: 'mdi-account', to: '/moj-racun', action: '' },
+          { title: 'Moje narudžbe', icon: 'mdi-package-variant-closed', to: '/moj-racun/narudzbe', action: '' },
+          { title: 'Moji podatci', icon: 'mdi-account-details-outline', to: '/moj-racun/moji-podatci', action: '' },
+          { title: 'Plaćanje', icon: 'mdi-credit-card-outline', to: '/moj-racun/placanje', action: '' },
+          { title: 'Pomoć', icon: 'mdi-help-box', action: ''},
+          { title: 'Odjava', icon: 'mdi-logout', action: this.logOut },
         ],
         right: null,
       }
     },
+    methods: {
+        logOut() {
+            this.$store
+            .dispatch('auth/logOut', { root: true })
+            .then(() => { this.$router.push('/trgovina') })
+        }
+    }
 }
 </script>
 

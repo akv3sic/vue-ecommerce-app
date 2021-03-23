@@ -61,7 +61,7 @@ const actions = {
                     httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
                     // call mutation
                     commit('auth_success', token, user)
-                    commit('registration_succes_alert')
+                    commit('registration_success_alert')
                     resolve(response)
                 }
             })
@@ -83,7 +83,7 @@ const actions = {
                 localStorage.removeItem('token')
                 delete httpClient.defaults.headers.common['Authorization']
                 resolve(response)
-                console.log("Korisnik uspješno odjavljen.")
+                commit('logout_success_alert')
             })
             .catch((error) => {
                 // Error :\
@@ -132,14 +132,27 @@ const mutations = {
     },
 
     /* successful registration alert */
-    registration_succes_alert(){
+    registration_success_alert(){
         Swal.fire({
             text: 'Račun uspješno napravljen.',
             icon: 'success',
             confirmButtonText: 'Nastavak'
           })
           .then(() => router.go(-1))
+    },
+    /*********************************/
+    /* successful registration alert */
+    logout_success_alert(){
+        Swal.fire({
+            width: 400,
+            position: 'top-end',
+            icon: 'info',
+            title: 'Uspješno ste odjavljeni.',
+            showConfirmButton: false,
+            timer: 1500
+          })
     }
+
     /*********************************/
 }
 
