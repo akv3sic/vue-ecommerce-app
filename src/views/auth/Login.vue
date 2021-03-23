@@ -36,22 +36,22 @@
                                 <v-card-text>
                                     <v-form ref="registerForm" v-model="valid" lazy-validation>
                                         <v-row>
-                                            <v-col cols="12" sm="6" md="6">
+                                            <v-col cols="12" sm="6">
                                                 <v-text-field v-model="ime" :rules="[rules.required]" label="Ime" maxlength="20" required></v-text-field>
                                             </v-col>
-                                            <v-col cols="12" sm="6" md="6">
+                                            <v-col cols="12" sm="6">
                                                 <v-text-field v-model="prezime" :rules="[rules.required]" label="Prezime" maxlength="20" required></v-text-field>
                                             </v-col>
-                                            <v-col cols="12">
+                                            <v-col cols="12" sm="6">
                                                 <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
                                             </v-col>
-                                            <v-col cols="12">
+                                            <v-col cols="12" sm="6">
                                                 <v-text-field v-model="phoneNum" label="Broj mobitela" hint="Ovaj podatak možete unijeti i kasnije."></v-text-field>
                                             </v-col>
-                                            <v-col cols="12">
+                                            <v-col cols="12" sm="6">
                                                 <v-text-field v-model="password" :append-icon="showRegPassword1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="showRegPassword1 ? 'text' : 'password'" name="input-10-1" label="Lozinka" hint="Minimalno 8 znakova." counter @click:append="showRegPassword1 = !showRegPassword1"></v-text-field>
                                             </v-col>
-                                            <v-col cols="12">
+                                            <v-col cols="12" sm="6">
                                                 <v-text-field block v-model="verify" :append-icon="showRegPassword2 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, passwordMatch]" :type="showRegPassword2 ? 'text' : 'password'" name="input-10-1" label="Potvrdite lozinku" counter @click:append="showRegPassword2 = !showRegPassword2"></v-text-field>
                                             </v-col>
                                             <v-spacer></v-spacer>
