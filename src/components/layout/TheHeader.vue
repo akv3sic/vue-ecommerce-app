@@ -7,9 +7,9 @@
                 :class="{'px-16':$vuetify.breakpoint.mdAndUp}"
             >
                 <!-- Mobile shopping basket button -->
-                <v-btn to="kosarica" class="hidden-md-and-up" text>
-                    <v-icon left size="23">mdi-basket-outline</v-icon>
-                    <v-badge color="accent" content="0"></v-badge>
+                <v-btn to="kosarica" class="hidden-md-and-up" text small>
+                    <v-icon>mdi-basket-outline</v-icon>
+                    <v-badge color="accent" :content="numberOfItems > 0 ? numberOfItems : '0'"></v-badge>
                 </v-btn>
 
                 <!-- Logo area -->
