@@ -13,9 +13,9 @@
               <zoom-on-hover :img-normal="product.url_slike"></zoom-on-hover>
             </v-row>
           </v-col>
-           <!--  -->   
+          <!--  -->
+          <!--******************************* Bitne info + actions *******************************-->
           <v-col cols="12" md="6">
-            <!-- Bitne info + actions -->
             <v-row>
               <v-col>
                 <span class="text-caption">{{ product.kategorija }}</span>
@@ -25,14 +25,14 @@
 
                 <!-- controls START -->
                 <div class="no-print">
-                      <!-- Quantity counter -->
+                  <!-- Quantity counter -->
                   <span class="text-button">Količina:</span>
                   <v-text-field min="1" max="100" value="1" default="1" v-model="quantityCounter" type="number" outlined shaped single-line hide-details></v-text-field>
-
+                  <!---------------------->
                   <v-btn class="mt-2 mb-16" color="primary" @click="addToCart({ id: product.id, quantity: quantityCounter })" >Dodaj u košaricu</v-btn>
                   <div class="mb-3">
                     <v-icon class="mx-1">mdi-facebook</v-icon>
-                    <v-icon class="mx-1">mdi-whatsapp</v-icon>
+                    <v-icon class="mx-1" @click="shareOnWhatsApp">mdi-whatsapp</v-icon>
                     <v-icon class="mx-1" @click="print">mdi-printer</v-icon>
                     <v-icon class="mx-1">mdi-email</v-icon>
                   </div>
@@ -54,6 +54,7 @@
               </v-col>
             </v-row>
           </v-col>
+          <!--************************************************************************************-->
         </v-row>
     </v-container>
 </template>
@@ -102,6 +103,11 @@ export default {
         ]
         return items
       },
+      shareOnWAppText() {
+        const text = this.product.ime + ' ' + window.location.href
+        const uriEncodedText = encodeURI(text)
+        return uriEncodedText
+      },
 
       ...mapGetters('product', ['product'])
     },
@@ -118,6 +124,11 @@ export default {
       print()
       {
         window.print();
+      },
+      shareOnWhatsApp()
+      {
+        const url = "https://wa.me/?text=" + this.shareOnWAppText
+        window.open(url, "_blank", "resizable=yes,width=500,height=500")
       }
     }
 }
