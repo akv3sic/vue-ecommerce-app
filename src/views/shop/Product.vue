@@ -34,7 +34,7 @@
                     <v-icon class="mx-1">mdi-facebook</v-icon>
                     <v-icon class="mx-1" @click="shareOnWhatsApp">mdi-whatsapp</v-icon>
                     <v-icon class="mx-1" @click="print">mdi-printer</v-icon>
-                    <v-icon class="mx-1">mdi-email</v-icon>
+                    <v-icon class="mx-1" @click="shareViaEmail">mdi-email</v-icon>
                   </div>
                 </div>
                 <!-- controls END -->
@@ -108,6 +108,10 @@ export default {
         const uriEncodedText = encodeURI(text)
         return uriEncodedText
       },
+      socialShareText() {
+        const text = 'Pogledaj ovo na Dash Detailing-u, moglo bi te zanimati: '+ this.product.ime + '.' + '%0D%0A' + window.location.href
+        return text
+      },
 
       ...mapGetters('product', ['product'])
     },
@@ -120,14 +124,20 @@ export default {
     methods: {
     // dodavanje u košaricu
     ...mapActions('cart', ['addToCart']),
-    // ispis  
+      shareOnWhatsApp()
+      {
+        const url = "https://wa.me/?text=" + this.shareOnWAppText
+        window.open(url, "_blank", "resizable=yes,width=500,height=500")
+      },
+      // ispis  
       print()
       {
         window.print();
       },
-      shareOnWhatsApp()
+      shareViaEmail()
       {
-        const url = "https://wa.me/?text=" + this.shareOnWAppText
+        const mailSubject = 'DashDETAILING - ' +  this.product.ime
+        const url = "mailto:?subject=" + mailSubject + "&body=" + this.socialShareText
         window.open(url, "_blank", "resizable=yes,width=500,height=500")
       }
     }
