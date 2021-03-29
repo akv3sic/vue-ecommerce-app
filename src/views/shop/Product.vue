@@ -31,7 +31,7 @@
                   <!---------------------->
                   <v-btn class="mt-2 mb-16" color="primary" @click="addToCart({ id: product.id, quantity: quantityCounter })" >Dodaj u košaricu</v-btn>
                   <div class="mb-3">
-                    <v-icon class="mx-1">mdi-facebook</v-icon>
+                    <v-icon class="mx-1" @click="shareOnFacebook">mdi-facebook</v-icon>
                     <v-icon class="mx-1" @click="shareOnWhatsApp">mdi-whatsapp</v-icon>
                     <v-icon class="mx-1" @click="print">mdi-printer</v-icon>
                     <v-icon class="mx-1" @click="shareViaEmail">mdi-email</v-icon>
@@ -124,6 +124,11 @@ export default {
     methods: {
     // dodavanje u košaricu
     ...mapActions('cart', ['addToCart']),
+      shareOnFacebook ()
+      {
+        const url = "https://www.facebook.com/sharer.php?u=" + window.location.href
+        window.open(url, "_blank", "resizable=yes,width=500,height=500")
+      },
       shareOnWhatsApp()
       {
         const url = "https://wa.me/?text=" + this.shareOnWAppText
