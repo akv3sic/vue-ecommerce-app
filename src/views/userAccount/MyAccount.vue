@@ -70,17 +70,20 @@ export default {
   data () {
       return {
         menuItems: [
-          { title: 'Pregled računa', icon: 'mdi-account', to: '/moj-racun', action: '' },
-          { title: 'Moje narudžbe', icon: 'mdi-package-variant-closed', to: '/moj-racun/narudzbe', action: '' },
-          { title: 'Moji podatci', icon: 'mdi-account-details-outline', to: '/moj-racun/moji-podatci', action: '' },
-          { title: 'Plaćanje', icon: 'mdi-credit-card-outline', to: '/moj-racun/placanje', action: '' },
-          { title: 'Pomoć', icon: 'mdi-help-box', action: ''},
+          { title: 'Pregled računa', icon: 'mdi-account', to: '/moj-racun', action: this.defaultHandler },
+          { title: 'Moje narudžbe', icon: 'mdi-package-variant-closed', to: '/moj-racun/narudzbe', action: this.defaultHandler },
+          { title: 'Moji podatci', icon: 'mdi-account-details-outline', to: '/moj-racun/moji-podatci', action: this.defaultHandler },
+          { title: 'Plaćanje', icon: 'mdi-credit-card-outline', to: '/moj-racun/placanje', action: this.defaultHandler },
+          { title: 'Pomoć', icon: 'mdi-help-box', action: this.defaultHandler},
           { title: 'Odjava', icon: 'mdi-logout', action: this.logOut },
         ],
         right: null,
       }
     },
     methods: {
+        defaultHandler() {
+            
+        },
         logOut() {
             this.$store
             .dispatch('auth/logOut', { root: true })
