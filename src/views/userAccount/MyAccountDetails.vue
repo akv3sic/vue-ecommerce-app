@@ -55,7 +55,7 @@
                     </v-col>
                 </v-row>
                 <div class="actions py-7">
-                    <v-btn class="primary">Spremi promjene</v-btn>
+                    <v-btn class="primary" @click="updateUserDetails">Spremi promjene</v-btn>
                 </div>
             </v-container>
         </v-card>
@@ -63,16 +63,32 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 export default {
     name: 'MyDetails',
     data: () => ({
-    user: {
-        ime: "Mate",
-        prezime: "Matić",
-        email: "mate@test.com",
-        mobitel: "+387 63 615 164",  
-    }
-  })
+    
+    }),
+   created() {
+        this.fetchUserDetails();
+    },
+    methods: {
+        fetchUserDetails() {
+            this.$store
+                .dispatch('userAccountDetails/fetchUserDetails', null, {root: true})
+        },
+        updateUserDetails() {
+            this.$store
+                .dispatch('userAccountDetails/updateUserDetails', this.user, { root: true })
+                .catch( err => {
+                    console.log(err)
+                })
+        }
+    },
+    computed: {
+        ...mapGetters('userAccountDetails', ['isLoading', 'user'])
+   }
 }
 </script>
 
