@@ -178,7 +178,7 @@ export default {
             {
                 console.log('Košarica:  ' + JSON.stringify(payload))
                 const cartData = {
-                    proizvodi: this.payload,
+                    proizvodi: payload,
                 }
                 this.$store
                     .dispatch('checkout/callCheckout', cartData, { root: true })
