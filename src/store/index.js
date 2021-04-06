@@ -7,12 +7,13 @@ import cart from './modules/cart'
 import checkout from './modules/checkout'
 import admin from './modules/admin'
 import userAccountDetails from './modules/userAccountDetails'
+import userAccountOrders from './modules/userAccountOrders'
 
 Vue.use(Vuex);
 
 
 export default new Vuex.Store({
   modules: {
-      auth, products, product, cart, checkout, admin, userAccountDetails
+      auth, products, product, cart, checkout, admin, userAccountDetails, userAccountOrders
   }
 });
