@@ -66,7 +66,7 @@
                     <template v-slot:activator="{ on, attrs }">    
                         <v-btn v-if="isLoggedIn" class="remove-text-transform" text v-bind="attrs" v-on="on">
                                 <v-icon class="mr-1">mdi-account</v-icon>
-                                Mate
+                                {{ displayName }}
                         </v-btn>
                     </template>
                       <v-list>
@@ -177,7 +177,7 @@ export default {
     },
     computed: {
 
-        ...mapGetters('auth', ['isLoggedIn']),
+        ...mapGetters('auth', ['isLoggedIn', 'displayName']),
         ...mapGetters('cart', ['numberOfItems'])
 
     },

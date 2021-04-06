@@ -6,13 +6,14 @@ import router from '../../router'
 const state = () => ({
     status: '',
     token: localStorage.getItem('token') || '',
-    user : {}
+    displayName: localStorage.getItem('displayName') || ''
 })
 
 // getters
 const getters = {
     isLoggedIn: state => !!state.token,
-    authStatus: state => state.status
+    authStatus: state => state.status,
+    displayName: state => state.displayName
 }
 
 // actions
@@ -27,13 +28,15 @@ const actions = {
                 if(response.status === 200) { // OK
                 // assign response data
                     const token = response.data.access_token
-                    const user = response.data.user
+                    const displayName = response.data.user.ime
                     // save token to local storage
                     localStorage.setItem('token', token)
+                    // save display name to local storage
+                    localStorage.setItem('displayName',displayName)
                     // set header
                     httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
                     // call mutation
-                    commit('auth_success', token, user)
+                    commit('auth_success', { token, displayName })
                     resolve(response)
                 }
             })
@@ -54,13 +57,15 @@ const actions = {
                 if(response.status === 201) { // resource created 
                     // assign response data
                     const token = response.data.access_token
-                    const user = response.data.user
+                    const displayName = response.data.user.ime
                     // save token to local storage
                     localStorage.setItem('token', token)
+                    // save display name to local storage
+                    localStorage.setItem('displayName', displayName)
                     // set header
                     httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
                     // call mutation
-                    commit('auth_success', token, user)
+                    commit('auth_success', { token, displayName })
                     commit('registration_success_alert')
                     resolve(response)
                 }
@@ -81,6 +86,7 @@ const actions = {
 
                 commit('logout')
                 localStorage.removeItem('token')
+                localStorage.removeItem('displayName')
                 delete httpClient.defaults.headers.common['Authorization']
                 resolve(response)
                 commit('logout_success_alert')
@@ -121,14 +127,15 @@ const mutations = {
     auth_error(state){
         state.status = 'error'
     },
-    auth_success(state, token, user){
+    auth_success(state, { token, displayName }){
         state.status = 'success'
         state.token = token
-        state.user = user
+        state.displayName = displayName
     },
     logout(state){
         state.status = ''
         state.token = ''
+        state.displayName = ''
     },
 
     /* successful registration alert */

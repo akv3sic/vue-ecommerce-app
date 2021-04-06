@@ -22,7 +22,7 @@
                         <v-list-item :class="{'py-4': $vuetify.breakpoint.mdAndUp}">
                             <v-list-item-content>
                             <v-list-item-title class="title">
-                                Pozdrav!
+                                Pozdrav, {{ displayName }}
                             </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 export default {
     name: "MyAccount",
   data () {
@@ -79,6 +81,9 @@ export default {
         ],
         right: null,
       }
+    },
+    computed: {
+        ...mapGetters('auth', ['displayName']),
     },
     methods: {
         defaultHandler() {
