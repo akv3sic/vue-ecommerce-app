@@ -1,4 +1,5 @@
 <template>
+<div class="flex">
     <v-row align="center" class="my-auto">
         <v-col class="my-auto"> 
             <v-card class="mx-auto my-5" max-width="600px" min-width="250px" elevation="6">
@@ -68,99 +69,101 @@
         </v-card>
     </v-col>
     </v-row>
+    <ThinFooter />
+</div>
 </template>
 
 <script>
-
+import ThinFooter from "@/components/layout/TheThinFooter";
 
 export default {
     name: "Login",
+    components: { ThinFooter },
     computed: {
     passwordMatch() {
       return () => this.password === this.verify || "Lozinke se ne podudaraju.";
     }
-  },
-  methods: {
-     
-    // metoda za validaciju i login
-    validateAndLogIn() {
-      if (this.$refs.loginForm.validate()) {
+    },
+    methods: {
+        
+        // metoda za validaciju i login
+        validateAndLogIn() {
+        if (this.$refs.loginForm.validate()) {
 
-        const USER = {
-            email: this.loginEmail,
-            lozinka: this.loginPassword,
-            admin_required: 0               // to be deleted in future
+            const USER = {
+                email: this.loginEmail,
+                lozinka: this.loginPassword,
+                admin_required: 0               // to be deleted in future
+            }
+            console.log(USER)
+            this.$store
+                .dispatch('auth/logIn', USER, { root: true })
+                .then(() => this.$router.go(-1))
+                .catch( err => {
+                    console.log(err)
+                })
         }
-        console.log(USER)
-        this.$store
-            .dispatch('auth/logIn', USER, { root: true })
-            .then(() => this.$router.go(-1))
-            .catch( err => {
-                console.log(err)
-            })
-      }
-    },
-    // metoda za validaciju i registraciju
-     validateAndRegister() {
-      if (this.$refs.registerForm.validate()) {
-   
-        const USER = {
-            email: this.email,
-            lozinka: this.password,
-            ime: this.ime,
-            prezime: this.prezime,
-            mobitel: this.phoneNum
-        }
-        console.log(USER)
-        this.$store
-            .dispatch('auth/register', USER, { root: true })
-            .catch( err => {
-                console.log("Greska pri registraciji: " + err)
-            })
-      }
-    },
-    reset() {
-      this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
-    }
-  },
-  data: () => ({
-    dialog: true,
-    tab: 0,
-    tabs: [
-        {name:"Prijava", icon:"mdi-login"},
-        {name:"Novi račun", icon:"mdi-account-plus"}
-    ],
-    valid: true,
+        },
+        // metoda za validaciju i registraciju
+        validateAndRegister() {
+        if (this.$refs.registerForm.validate()) {
     
-    ime: "",
-    prezime: "",
-    email: "",
-    phoneNum: null,
-    password: "",
-    verify: "",
-    loginPassword: "",
-    loginEmail: "",
-    loginEmailRules: [
-      v => !!v || "Obavezno polje.",
-      v => /.+@.+\..+/.test(v) || "Unesite ispravnu e-mail adresu."
-    ],
-    emailRules: [
-      v => !!v || "Obavezno polje.",
-      v => /.+@.+\..+/.test(v) || "Unesite ispravnu e-mail adresu."
-    ],
+            const USER = {
+                email: this.email,
+                lozinka: this.password,
+                ime: this.ime,
+                prezime: this.prezime,
+                mobitel: this.phoneNum
+            }
+            console.log(USER)
+            this.$store
+                .dispatch('auth/register', USER, { root: true })
+                .catch( err => {
+                    console.log("Greska pri registraciji: " + err)
+                })
+        }
+        },
+        reset() {
+        this.$refs.form.reset();
+        },
+        resetValidation() {
+        this.$refs.form.resetValidation();
+        }
+    },
+    data: () => ({
+        dialog: true,
+        tab: 0,
+        tabs: [
+            {name:"Prijava", icon:"mdi-login"},
+            {name:"Novi račun", icon:"mdi-account-plus"}
+        ],
+        valid: true,
+        
+        ime: "",
+        prezime: "",
+        email: "",
+        phoneNum: null,
+        password: "",
+        verify: "",
+        loginPassword: "",
+        loginEmail: "",
+        loginEmailRules: [
+        v => !!v || "Obavezno polje.",
+        v => /.+@.+\..+/.test(v) || "Unesite ispravnu e-mail adresu."
+        ],
+        emailRules: [
+        v => !!v || "Obavezno polje.",
+        v => /.+@.+\..+/.test(v) || "Unesite ispravnu e-mail adresu."
+        ],
 
-    showLoginPassword: false,
-    showRegPassword1:false,
-    showRegPassword2: false,
-    rules: {
-      required: value => !!value || "Obavezno polje.",
-      min: v => (v && v.length >= 8) || "Minimalno 8 znakova."
-    }
-  })
-
+        showLoginPassword: false,
+        showRegPassword1:false,
+        showRegPassword2: false,
+        rules: {
+        required: value => !!value || "Obavezno polje.",
+        min: v => (v && v.length >= 8) || "Minimalno 8 znakova."
+        }
+    })
 }
 </script>
 
