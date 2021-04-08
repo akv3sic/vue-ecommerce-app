@@ -76,7 +76,7 @@
                                 <v-row class=""> 
                                     <v-col class="text-caption">Cijena</v-col>
                                 </v-row>
-                                {{ item.cijena.toFixed(2) }}
+                                {{ item.cijena }}
                             </v-col>
                             <v-col cols="4">
                                 <v-row class=""> 
