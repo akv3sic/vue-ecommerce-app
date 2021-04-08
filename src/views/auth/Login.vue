@@ -1,5 +1,5 @@
 <template>
-<div class="flex">
+<v-container blue-grey lighten-5 fluid fill-height>
     <v-row align="center" class="my-auto">
         <v-col class="my-auto"> 
             <v-card class="mx-auto my-5" max-width="600px" min-width="250px" elevation="6">
@@ -70,7 +70,7 @@
     </v-col>
     </v-row>
     <ThinFooter />
-</div>
+</v-container>
 </template>
 
 <script>
