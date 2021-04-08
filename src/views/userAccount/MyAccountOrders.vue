@@ -28,7 +28,7 @@
                 </v-row>
             </v-container>
 
-            <v-container v-else-if="orders.length === 0 || orders.message == 'Nema prijašnjih kupnji!!'" class="mb-2">
+            <v-container v-else-if="orders.length === 0" class="mb-2">
                 <v-row>
                     <v-col>
                         <p>Još nemate narudžbi.</p>
