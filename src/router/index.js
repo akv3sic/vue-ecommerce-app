@@ -16,6 +16,11 @@ const routes = [
     component: () => import("@/views/auth/Login")
   },
   {
+    path: '/admin-prijava',
+    name: 'adminLogin',
+    component: () => import("@/views/auth/AdminLogin")
+  },
+  {
     path: '/trgovina',
     name: 'shopHome',
     component: () => import("@/views/shop/ShopHome")
