@@ -60,28 +60,31 @@
                     
                 </v-col>
             </v-row>
-        </v-container>    
+        </v-container>
+        <ThinFooter />
     </v-container>
 </template>
 
 <script>
 import { mapGetters } from "vuex"
+import ThinFooter from "@/components/layout/TheThinFooter";
 
 export default {
     name: "MyAccount",
-  data () {
-      return {
-        menuItems: [
-          { title: 'Pregled računa', icon: 'mdi-account', to: '/moj-racun', action: this.defaultHandler },
-          { title: 'Moje narudžbe', icon: 'mdi-package-variant-closed', to: '/moj-racun/narudzbe', action: this.defaultHandler },
-          { title: 'Moji podatci', icon: 'mdi-account-details-outline', to: '/moj-racun/moji-podatci', action: this.defaultHandler },
-          { title: 'Plaćanje', icon: 'mdi-credit-card-outline', to: '/moj-racun/placanje', action: this.defaultHandler },
-          { title: 'Pomoć', icon: 'mdi-help-box', action: this.defaultHandler},
-          { title: 'Odjava', icon: 'mdi-logout', action: this.logOut },
-        ],
-        right: null,
-      }
-    },
+    components: { ThinFooter},
+    data () {
+        return {
+            menuItems: [
+            { title: 'Pregled računa', icon: 'mdi-account', to: '/moj-racun', action: this.defaultHandler },
+            { title: 'Moje narudžbe', icon: 'mdi-package-variant-closed', to: '/moj-racun/narudzbe', action: this.defaultHandler },
+            { title: 'Moji podatci', icon: 'mdi-account-details-outline', to: '/moj-racun/moji-podatci', action: this.defaultHandler },
+            { title: 'Plaćanje', icon: 'mdi-credit-card-outline', to: '/moj-racun/placanje', action: this.defaultHandler },
+            { title: 'Pomoć', icon: 'mdi-help-box', action: this.defaultHandler},
+            { title: 'Odjava', icon: 'mdi-logout', action: this.logOut },
+            ],
+            right: null,
+        }
+        },
     computed: {
         ...mapGetters('auth', ['displayName']),
     },
