@@ -6,12 +6,14 @@ import router from '../../router'
 const state = () => ({
     status: '',
     token: localStorage.getItem('token') || '',
-    displayName: localStorage.getItem('displayName') || ''
+    displayName: localStorage.getItem('displayName') || '',
+    adminPermissions: false
 })
 
 // getters
 const getters = {
     isLoggedIn: state => !!state.token,
+    hasAdminPermissions: state => state.adminPermissions,
     authStatus: state => state.status,
     displayName: state => state.displayName
 }
@@ -29,6 +31,11 @@ const actions = {
                 // assign response data
                     const token = response.data.access_token
                     const displayName = response.data.user.ime
+                    const role = response.data.user.role
+                    if(role === 'Admin' ||  role === 'Superadmin') {
+                        console.log('ADMIN here :)')
+                        commit('auth_admin')
+                    }
                     // save token to local storage
                     localStorage.setItem('token', token)
                     // save display name to local storage
@@ -132,12 +139,14 @@ const mutations = {
         state.token = token
         state.displayName = displayName
     },
+    auth_admin(state){
+        state.adminPermissions= true
+    },
     logout(state){
         state.status = ''
         state.token = ''
         state.displayName = ''
     },
-
     /* successful registration alert */
     registration_success_alert(){
         Swal.fire({

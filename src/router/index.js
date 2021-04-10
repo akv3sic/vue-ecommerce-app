@@ -89,6 +89,7 @@ const routes = [
     path: '/admin',
     name: 'admin-home',
     component: () => import("@/views/admin/AdminHome"),
+    meta: { requiresAuth: true, requiresAdminPermissions: true },
     children: [
 
       {
@@ -128,12 +129,28 @@ const router = new VueRouter({
 
 /****************** ROUTE GUARDS *****************/
 router.beforeEach((to, from, next) => {
+  /* AUTH REQUIRED */
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (!store.getters['auth/isLoggedIn']) {
       next({
         path: '/prijava',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
+  /* ADMIN PERMISSIONS REQUIRED */
+  if (to.matched.some(record => record.meta.requiresAdminPermissions)) {
+    // this route requires admin permissions, check if logged in
+    // if not, redirect to admin login page.
+    if (!store.getters['auth/hasAdminPermissions']) {
+      next({
+        path: '/admin-prijava',
         query: { redirect: to.fullPath }
       })
     } else {
