@@ -30,8 +30,10 @@
         <v-row>
             <v-col cols="6" md="3">
                 <v-select
-                v-model="noviProizvod.kategorija"
-                :items="items"
+                v-model="noviProizvod.kategorijaID"
+                :items="categories"
+                item-text="kategorija"
+                item-value="kategorijaID"
                 label="Kategorija"
                 dense
                 outlined
@@ -39,8 +41,10 @@
             </v-col>
             <v-col cols="6" md="3">
                 <v-select
-                v-model="noviProizvod.brand"
-                :items="items"
+                v-model="noviProizvod.brandID"
+                :items="brands"
+                item-text="brand"
+                item-value="brandID"
                 label="Brand"
                 dense
                 outlined
@@ -50,7 +54,7 @@
         <v-row>
             <v-col cols="12" md="10">
                 <v-text-field
-                    v-model="noviProizvod.urlSlike"
+                    v-model="noviProizvod.url_slike"
                     label="URL slike"
                     append-icon="mdi-image"
                     hint="Preporuka: veličina slike oko 800 x 800 px."
@@ -71,24 +75,42 @@
             </v-col>
         </v-row>
         
-        <v-btn class="primary">Dodaj proizvod</v-btn>
+        <v-btn class="primary" @click="publishProduct">Dodaj proizvod</v-btn>
 
     </v-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+import store from "@/store";
+
 export default {
     name: 'addNewProduct',
     data: () => ({
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       noviProizvod: {
           ime: '',
           opis:'',
-          kategorija: '',
-          brand: '',
-          urlSlike: '',
+          kategorijaID: null,
+          brandID: null,
+          url_slike: '',
           cijena: ''
       }
     }),
+    computed: {
+        ...mapGetters('products', ['brands', 'categories'])
+    },
+    beforeRouteEnter(to, from, next) {
+    store.dispatch('products/fetchProducts', {categoryId: null}, {root: true})
+    next()
+    },
+    methods: {
+        publishProduct() {
+        this.$store
+            .dispatch('product/publishProduct', this.noviProizvod, { root: true })
+            .catch( err => {
+                console.log(err)
+            })
+        }
+    }
 }
 </script>
