@@ -24,7 +24,10 @@
                 nav
                 dense
             >
-                <v-list-item>
+                <v-list-item
+                to="/admin"
+                exact
+                >
                     <v-list-item-icon>
                     <v-icon>mdi-view-dashboard</v-icon>
                     </v-list-item-icon>

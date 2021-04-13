@@ -87,11 +87,14 @@ const routes = [
   /****************************/
   {
     path: '/admin',
-    name: 'admin-home',
     component: () => import("@/views/admin/AdminHome"),
     meta: { requiresAuth: true, requiresAdminPermissions: true },
     children: [
-
+      {
+        path: '',
+        name: 'admin-report',
+        component: () => import("@/views/admin/AdminReport")
+      },
       {
         path: 'proizvodi',
         name: 'products-list',
