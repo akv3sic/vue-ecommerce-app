@@ -23,6 +23,7 @@
                     <v-list-item
                     v-for="(item, index) in accountMenuItems"
                     :key="index"
+                    @click="handleAccountMenuItemClick(item.action)"
                     >
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item>
@@ -44,13 +45,22 @@ export default {
     name: 'Navbar',
     data: () => ({
        accountMenuItems: [
-            { title: 'Odjava'},  
+            { title: 'Odjava', action: 'logOut'},  
             ],
     }),
     computed: {
       ...mapState('admin', ['drawer'])
     },
      methods: {
+         handleAccountMenuItemClick(action) {
+             switch(action) {
+             case 'logOut':
+                this.$store
+                    .dispatch('auth/logOut', { root: true })
+                 this.$router.push({path: '/trgovina'})
+                break;
+                }
+             },
      ...mapActions('admin', ['setDrawer'])
     },
 }
