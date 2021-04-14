@@ -67,11 +67,14 @@
                 </v-row>
                 {{ product.cijena}} KM
             </v-col>
-            <v-col cols="3" md="3">
+            <v-col cols="3" md="2">
                 <v-row class="hidden-md-and-up"> 
                     <v-col class="text-caption">Kategorija</v-col>
                 </v-row>
                 {{ product.kategorija }}
+            </v-col>
+            <v-col md="1">
+                <v-icon @click="deleteProduct(product.id, product.ime, product.url_slike)">mdi-delete</v-icon>
             </v-col>
             </v-row>
         </v-card>
@@ -81,6 +84,7 @@
 
 <script>
 import { mapGetters } from "vuex"
+import Swal from 'sweetalert2'
 
 export default {
     name: 'productsList',
@@ -94,6 +98,31 @@ export default {
         fetchProducts() {
             this.$store
                 .dispatch('products/fetchProducts', {categoryId: null}, {root: true})
+        },
+        deleteProduct(productId, productName, productImageUrl) {
+            /* confirmation dialog */
+            Swal.fire({
+                title: 'Sigurno želite izbrisati ovaj proizvod?',
+                text: productName,
+                imageUrl: productImageUrl,
+                imageHeight: 135,
+                showDenyButton: true,
+                confirmButtonText: `Da, izbriši`,
+                confirmButtonColor: '#052949',
+                denyButtonText: 'Ne',
+                denyButtonColor: '#c52033',
+                customClass: {
+                confirmButton: 'order-2',
+                denyButton: 'order-3',
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                this.$store
+                .dispatch('product/deleteProduct', productId, {root: true})
+                this.fetchProducts()
+                }
+            })
+        /*********************************/
         }
     },
     computed: {

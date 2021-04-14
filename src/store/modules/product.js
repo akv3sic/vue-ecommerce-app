@@ -47,7 +47,28 @@ const state = () => ({
                 reject(err)
             })
         })
-        
+    },
+    deleteProduct( {commit}, productId) {
+        return new Promise((resolve, reject) => {
+            const url = '/proizvodi/' + productId + '/update'
+            const payload = { delete: 1 }
+            httpClient.put(url, payload)
+            .then(response => {
+                // check response status
+                if(response.status === 200) { // OK
+                    // assign response data
+                    const msg = response.data.message
+                    console.log(msg)
+                    // call mutation
+                    commit('DELETE_SUCCESS')
+                    resolve(response)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                reject(err)
+            })
+        })
     }
  }
  
@@ -63,6 +84,18 @@ const state = () => ({
             position: 'top-end',
             icon: 'success',
             title: 'Proizvod uspješno dodan.',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        /*********************************/
+    },
+    DELETE_SUCCESS() {
+        /* success alert */
+        Swal.fire({
+            width: 400,
+            position: 'top-end',
+            icon: 'info',
+            title: 'Proizvod više nije vidljiv.',
             showConfirmButton: false,
             timer: 1500
         })
