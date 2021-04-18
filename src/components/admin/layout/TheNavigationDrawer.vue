@@ -8,7 +8,7 @@
             <v-list-item-content>
                 <v-row>
                     <v-col justify-center>
-                    <router-link to="/admin" class="text-decoration-none  text-uppercase primary--text">
+                    <router-link to="/trgovina" class="text-decoration-none  text-uppercase primary--text">
                         <span class="font-weight-normal primary--text d-inline">Dash</span>
                         <img class="" :src="require('../../../assets/logo.svg')" height="18"/>
                         <span class="d-inline font-weight-bold">etailing</span>
