@@ -75,6 +75,9 @@
             </v-col>
             <v-col md="1">
                 <v-icon @click="deleteProduct(product.id, product.ime, product.url_slike)">mdi-delete</v-icon>
+                <router-link class="rm-underline" :to="'/admin/uredi-proizvod/' + product.id + '/' + product.slug">
+                    <v-icon class="ml-1">mdi-pencil</v-icon>
+                </router-link>
             </v-col>
             </v-row>
         </v-card>
@@ -126,8 +129,13 @@ export default {
         }
     },
     computed: {
-
         ...mapGetters('products', ['products', 'isLoading'])
     },
 }
 </script>
+
+<style scoped>
+.rm-underline{
+    text-decoration: none;
+}
+</style>

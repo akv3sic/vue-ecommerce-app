@@ -105,6 +105,12 @@ const routes = [
         name: 'products-add-new',
         component: () => import("@/views/admin/products/ProductsAddNew")
       },
+      {
+        path: 'uredi-proizvod/:id/:slug',
+        name: 'products-editing',
+        component: () => import("@/views/admin/products/ProductsEditProduct"),
+        props: true
+      },
     ]
   },
   /*^^^^^^^^^^^^^^^^^^^^^^^^^*/
