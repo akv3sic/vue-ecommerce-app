@@ -6,7 +6,7 @@
                 <v-list-item
                 v-for="(kategorija, id) in kategorije"
                 :key="id"
-                :to="'/kategorija/' + kategorija.kategorijaID + '/' + 'slug-kategorije'"
+                :to="'/kategorija/' + kategorija.kategorijaID + '/' + kategorija.slug"
                 >
                     <v-list-item-content>
                         <v-list-item-title v-text="kategorija.kategorija"></v-list-item-title>
