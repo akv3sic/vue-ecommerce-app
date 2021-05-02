@@ -6,7 +6,7 @@
 - [Backend repository](https://github.com/VjekoRezic/FlaskBackend) 
 
 <p align="center">
-<img src="https://media.giphy.com/media/Dva41ywkkETVKaHHv9/giphy.gif" width="600" alt="user account">
+<img src="https://media.giphy.com/media/uLGIhUi4x7WqoTwBOR/giphy.gif" width="600" alt="user account">
 </p>
 <p align="center">
 <img src="https://media.giphy.com/media/jKtVTfstW5xekPbG2j/giphy.gif" width="600" alt="backoffice">
