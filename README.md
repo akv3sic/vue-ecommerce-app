@@ -3,7 +3,7 @@
 # DashDetailing - Ecommerce Application 🛒 built with Vue and Flask
 > Student project at [University of Mostar](https://www.sum.ba/en), Mostar, Bosnia and Herzegovina
 - Demo available soon.
-- [Vizion statement (Croatian)](https://docs.google.com/document/d/1JzsLHWfdC9LEyuukmeVUxToQmCsCsy9Hc-fkxp9aitw/edit?usp=sharing)
+- [Vision Statement (Croatian)](https://docs.google.com/document/d/1JzsLHWfdC9LEyuukmeVUxToQmCsCsy9Hc-fkxp9aitw/edit?usp=sharing)
 - [Backend](https://github.com/VjekoRezic/FlaskBackend) - built with Flask
 
 <p align="center">
