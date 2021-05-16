@@ -22,7 +22,7 @@
                         <v-list-item :class="{'py-4': $vuetify.breakpoint.mdAndUp}">
                             <v-list-item-content>
                             <v-list-item-title class="title">
-                                Pozdrav, {{ displayName }}
+                            {{ greeting }}, {{ displayName }}
                             </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -67,7 +67,8 @@
 
 <script>
 import { mapGetters } from "vuex"
-import ThinFooter from "@/components/layout/TheThinFooter";
+import ThinFooter from "@/components/layout/TheThinFooter"
+import { getGreeting } from '@/helpers/greetingTimeCroatian'
 
 export default {
     name: "MyAccount",
@@ -86,6 +87,13 @@ export default {
         }
         },
     computed: {
+        greeting: {
+            get: function(){
+                if(getGreeting() == undefined) return null
+                return getGreeting()
+        }
+      },
+
         ...mapGetters('auth', ['displayName']),
     },
     methods: {
