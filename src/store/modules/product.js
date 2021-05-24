@@ -95,9 +95,17 @@ const state = () => ({
     updateProductDetails({commit, dispatch}, product ){
         return new Promise((resolve, reject) => {
             commit('UPDATE_REQUEST')
-            console.log('Šalje se ' + JSON.stringify(product))
-            const url = "/proizvod/" + product.id + "/update"
-            httpClient.put(url, product)
+            const productData = {
+                ime: product.ime,
+                cijena: product.cijena,
+                url_slike: product.url_slike,
+                brandID: product.brandID.toString(),
+                kategorijaID: product.kategorijaID.toString(),
+                opis: product.opis
+            }
+            console.log('Šalje se ' + JSON.stringify(productData))
+            const url = "/proizvodi/" + product.id + "/update"
+            httpClient.put(url, productData)
             .then(response => {
                 console.log(response)
                 // check response status
@@ -107,8 +115,8 @@ const state = () => ({
                     console.log(msg)
                     // call mutation
                     commit('UPDATE_SUCCESS')
-                    // call action to fetch updated user details
-                    dispatch('fetchProductEditingData')
+                    // call action to fetch updated product data
+                    dispatch('fetchProductEditingData', product.id)
                     resolve(response)
                 }
             })
@@ -160,7 +168,7 @@ const state = () => ({
     UPDATE_SUCCESS(state) {
         state.isLoading = false
         /*********************************/
-        /* successful registration alert */
+        /* successful update alert */
         Swal.fire({
             width: 400,
             position: 'top-end',
