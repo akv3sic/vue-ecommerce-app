@@ -50,7 +50,7 @@
               <v-col order="-1">
                 <hr>
                 <h2 class="text-overline">Opis proizvoda</h2>
-                <p class="text-body-1">{{product.opis }}</p>
+                <div class="text-body-1" v-html="product.opis"></div>
               </v-col>
             </v-row>
           </v-col>
