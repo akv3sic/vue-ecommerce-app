@@ -19,12 +19,10 @@
         </v-row>
         <v-row>
             <v-col cols="12" md="10">
-                <v-textarea
-                v-model="noviProizvod.opis"
-                label="Opis proizvoda"
-                dense
-                outlined
-                ></v-textarea>
+                <span class="text-caption ml-3 desc-caption">Opis proizvoda</span>
+                <!-- WYSIWYG editor -->
+                <vue-editor v-model="noviProizvod.opis">
+                </vue-editor>
             </v-col>
         </v-row>
         <v-row>
@@ -83,9 +81,11 @@
 <script>
 import { mapGetters } from "vuex"
 import store from "@/store";
+import { VueEditor } from "vue2-editor"
 
 export default {
     name: 'addNewProduct',
+    components: { VueEditor },
     data: () => ({
       noviProizvod: {
           ime: '',
