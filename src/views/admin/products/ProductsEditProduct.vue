@@ -19,11 +19,10 @@
         </v-row>
         <v-row>
             <v-col cols="12" md="10">
-            
+                <span class="text-caption ml-3 desc-caption">Opis proizvoda</span>
+                <!-- WYSIWYG editor -->
                 <vue-editor v-model="product.opis">
-
                 </vue-editor>
-                
             </v-col>
         </v-row>
         <v-row>
@@ -108,3 +107,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.desc-caption{
+    opacity: 0.8;
+}
+</style>
