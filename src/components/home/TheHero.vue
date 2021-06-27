@@ -21,7 +21,6 @@
         <div class="mainPitch">
           <div class="hero-text">
                 <h3>mi smo spremni.</h3>
-                <router-link to="/rezervacija"><button class="btn btn-rezerviraj">Rezervirajte termin.</button></router-link>
             </div>
         </div>
         
