@@ -1,7 +1,7 @@
 <template>
     <div class="pa-2" :class="{'pa-0':$vuetify.breakpoint.xs, 'px-8':$vuetify.breakpoint.sm,'px-8':$vuetify.breakpoint.md, 'px-16':$vuetify.breakpoint.lgAndUp}">
     <Header/>
-    <SearchBar />
+    <!-- <SearchBar /> -->
     <PromoBanner />
     <Page />
     </div>
@@ -9,13 +9,13 @@
 
 <script>
 import Header from "@/components/layout/TheHeader";
-import SearchBar from "@/components/shop/TheSearchBar"
+// import SearchBar from "@/components/shop/TheSearchBar"
 import PromoBanner from "@/components/shop/PromoBanner"
 import Page from "@/components/shop/productsPage/TheProductsPage"
 
 export default {
     name: "shopHome",
-    components: { Header, SearchBar, PromoBanner, Page },
+    components: { Header, PromoBanner, Page },
     data: () => ({
 
     }),
