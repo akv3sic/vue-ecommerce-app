@@ -26,10 +26,10 @@ const state = () => ({
  const actions = {
     fetchProduct( {commit}, productId) {
         const url = '/proizvodi/' + productId
-        console.log('Request to' + url)
+        // console.log('Request to' + url)
         httpClient.get(url)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 commit('SET_PRODUCT', response.data)
             })
             .catch(err => {
@@ -81,10 +81,10 @@ const state = () => ({
     },
     fetchProductEditingData( {commit}, productId) {
         const url = '/proizvodi/' + productId + '/update'
-        console.log('Request to' + url)
+        // console.log('Request to' + url)
         httpClient.get(url)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 commit('SET_PRODUCT_EDITING_DATA', response.data)
             })
             .catch(err => {
@@ -103,11 +103,11 @@ const state = () => ({
                 kategorijaID: product.kategorijaID.toString(),
                 opis: product.opis
             }
-            console.log('Šalje se ' + JSON.stringify(productData))
+            // console.log('Šalje se ' + JSON.stringify(productData))
             const url = "/proizvodi/" + product.id + "/update"
             httpClient.put(url, productData)
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 // check response status
                 if(response.status === 200) { // OK
                     // assign response data

@@ -41,14 +41,14 @@ const actions = {
           }
         else if(brandId)
           {
-            console.log("CategoryId je prazan.")
-            console.log('Selected brand ID: ' + brandId)
+            // console.log("CategoryId je prazan.")
+            // console.log('Selected brand ID: ' + brandId)
             url = '/proizvodi?brandID=' + brandId
           }
          
         httpClient.get(url)
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             commit('FETCH_END', response.data)
           })
         .catch(err => {

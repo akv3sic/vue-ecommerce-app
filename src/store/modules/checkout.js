@@ -24,7 +24,7 @@ const state = () => ({
                 // Success :)
                 // check response status
                 if(response.status === 200) { // OK
-                    console.log('Kupovina odgovor: ' + JSON.stringify(response))
+                    // console.log('Kupovina odgovor: ' + JSON.stringify(response))
                     
                     commit('CHECKOUT_END')
                     commit('CHECKOUT_SUCCESS_ALERT')

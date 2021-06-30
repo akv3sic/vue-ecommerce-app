@@ -23,7 +23,7 @@ const state = () => ({
         const url = '/povijest'
         httpClient.get(url)
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             commit('FETCH_END', response.data.povijestKupovine)
           })
         .catch(err => {

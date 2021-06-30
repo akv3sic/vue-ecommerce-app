@@ -22,7 +22,7 @@ const state = () => ({
         const url = '/profil'
         httpClient.get(url)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 commit('SET_USER_DETAILS', response.data.user)
             })
             .catch(err => {
@@ -32,7 +32,7 @@ const state = () => ({
     updateUserDetails({commit, dispatch}, user){
         return new Promise((resolve, reject) => {
             commit('UPDATE_REQUEST')
-            console.log('Šalje se ' + JSON.stringify(user))
+            // console.log('Šalje se ' + JSON.stringify(user))
             httpClient.put("/profil", user)
             .then(response => {
                 console.log(response)

@@ -37,7 +37,7 @@ const state = () => ({
     addToCart( {commit}, item) {
         commit('ADD_TO_CART', item)
 
-        console.log("Proizvod s ID-em " + item.id + " dodan u košaricu. Količina: " + item.quantity + "." )
+        // console.log("Proizvod s ID-em " + item.id + " dodan u košaricu. Količina: " + item.quantity + "." )
         commit('SAVE_CART')
     },
 
@@ -69,7 +69,7 @@ const state = () => ({
                 },
         })
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             commit('FETCH_END', response.data.proizvodi)
           })
         .catch(err => {
@@ -95,17 +95,17 @@ const state = () => ({
     REMOVE_FROM_CART(state, item) {
         let found = state.cartItems.find(product => product.id == item.id);
         let cartItemIndex = state.cartItems.indexOf(found)
-        console.log(cartItemIndex)
+        // console.log(cartItemIndex)
         if(cartItemIndex > -1)
             state.cartItems.splice(cartItemIndex, 1)
        
-        console.log("Proizvod s ID-em " + item.id + " uklonjen iz košarice.")
+        // console.log("Proizvod s ID-em " + item.id + " uklonjen iz košarice.")
     },
     INCREMENT_QUANTITY(state, item) {
         let found = state.cartItems.find(product => product.id == item.id);
         if(found) {
             found.quantity++
-            console.log("Quantity of product with ID of " + item.id + " incremented.")
+           // console.log("Quantity of product with ID of " + item.id + " incremented.")
         } 
         else
             console.log("Greška.")
@@ -114,14 +114,14 @@ const state = () => ({
         let found = state.cartItems.find(product => product.id == item.id);
         if(found && found.quantity > 1) {
             found.quantity--
-            console.log("Quantity of product with ID of " + item.id + " decremented.")
+            // console.log("Quantity of product with ID of " + item.id + " decremented.")
         }
         else
             console.log("Greška.")
     },
     SAVE_CART(state) {
         window.localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-        console.log('Card items saved to local storage.')
+        // console.log('Card items saved to local storage.')
     },
     RESET_CARD(state) {
         state.cartItems = []

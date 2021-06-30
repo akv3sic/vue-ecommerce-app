@@ -27,7 +27,7 @@ const state = () => ({
         const url = '/izvjestaj'
         httpClient.get(url)
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             commit('FETCH_END', response.data)
           })
         .catch(err => {

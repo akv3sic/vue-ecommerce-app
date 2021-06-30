@@ -25,7 +25,7 @@ const actions = {
             commit('auth_request')
             httpClient.post("/prijava", user)
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 // check response status
                 if(response.status === 200) { // OK
                 // assign response data
@@ -33,7 +33,7 @@ const actions = {
                     const displayName = response.data.user.ime
                     const role = response.data.user.role
                     if(role === 'Admin' ||  role === 'Superadmin') {
-                        console.log('ADMIN here :)')
+                        // console.log('ADMIN here :)')
                         commit('auth_admin')
                     }
                     // save token to local storage
@@ -59,7 +59,7 @@ const actions = {
             commit('auth_request')
             httpClient.post("/registracija", user)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 // check response status
                 if(response.status === 201) { // resource created 
                     // assign response data
@@ -89,7 +89,7 @@ const actions = {
             httpClient.post("/odjava")
             .then((response) => {
                 // Success :)
-                console.log(response);
+                // console.log(response);
 
                 commit('logout')
                 localStorage.removeItem('token')
@@ -107,7 +107,7 @@ const actions = {
                      */
                     console.log(error.response.data);
                     console.log(error.response.status);
-                    console.log(error.response.headers);
+                    // console.log(error.response.headers);
                 } else if (error.request) {
                     /*
                      * The request was made but no response was received, `error.request`
