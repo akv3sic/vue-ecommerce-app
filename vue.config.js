@@ -2,5 +2,5 @@ module.exports = {
   "transpileDependencies": [
     "vuetify"
   ],
-  publicPath:' '
+  publicPath:'/projekti/fsre_rwa/2020/g17/'
 }
