@@ -2,7 +2,7 @@
 
 # DashDetailing - Ecommerce Application 🛒 built with Vue and Flask
 > Student project at [University of Mostar](https://www.sum.ba/en), Mostar, Bosnia and Herzegovina
-- [Demo](https://studenti.sum.ba/projekti/fsre_rwa/2020/g17/#/) - not working 100% yet, login and registration throw 502 (Proxy Error)
+- [Demo](https://studenti.sum.ba/projekti/fsre_rwa/2020/g17/#/) - Backend is not working currently
 - [Vision Statement (Croatian)](https://docs.google.com/document/d/1JzsLHWfdC9LEyuukmeVUxToQmCsCsy9Hc-fkxp9aitw/edit?usp=sharing)
 - [Backend](https://github.com/VjekoRezic/FlaskBackend) - built with Flask
 
